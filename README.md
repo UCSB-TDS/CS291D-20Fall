@@ -5,7 +5,7 @@
 - [Bitcoin and Cryptocurrency Technologies](http://bitcoinbook.cs.princeton.edu/) (You can find a free version of the earlier draft if you don't want to buy the book)
 
 ## Lecture Time
-- Tuesday/Thursday 1-2:50 PM
+- Tuesday/Thursday 1 PM -2:50 PM
 
 ## Course Syllabus:
 
