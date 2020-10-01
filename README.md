@@ -20,8 +20,8 @@
 | Oct 22  | Wang (Guest)   |Consensus IV: Speed Up Consensus using Sharding |   |      | 
 | Oct 27  | Chu     |Ethereum, EVM and Smart Contract | [Ethereum Yellow Paper]()  |      |       ｜
 | Oct 29  | Chu     |Writing Smart Contracts using Solidity  |        | Project Proposal Due  |
-| Nov 3   | Chu     |Layer-2 I: Connecting Real World with Oracles     |      |       ｜
-| Nov 5   | Chu     |Layer-2 II: Payment Channel and State Channel  |      |       ｜
+| Nov 3   | Chu     |Layer-2 I: Connecting Real World with Oracles     |      |      |
+| Nov 5   | Chu     |Layer-2 II: Payment Channel and State Channel  |      |      |
 | Nov 10  | Chu     |De-anonymizing the Blockchain and mixing |     |       |
 | Nov 12  | Chu     |PCP and Zero Knowledge Proofs |      |       |
 | Nov 17  | Chu     |zkSnark Primer I  |       |    | 
