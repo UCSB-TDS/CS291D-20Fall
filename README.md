@@ -32,4 +32,4 @@
 | Dec 3   | Ji (Guest) |Token Economy and the Future of Blockchains |     |      |
 | Dec 8   | Chu     | Extra Office Hour for Project Hacking |    |      |
 | Dec 10  |         | Project Presentation |          |          |
-| Dec 12  |         ｜                     ｜                 ｜ 11PM PST, Proposal Due |
+| Dec 12  |         |                    |                | 11PM PST, Proposal Due |
