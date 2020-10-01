@@ -16,10 +16,10 @@ Shumo Chu (shumo@ucsb.edu)
 |  Date   | Speaker | Topic          | Readings            |   Event  | 
 |---------|---------|----------------|---------------------|----------|  
 | Oct 1   |         |No lecture  |                     |          |
-| Oct 6   | Chu     |Introduction, Cryptographic Primititives  | BCT Chapter 1 |       |
+| Oct 6   | Chu     |Introduction, Cryptographic Primititives  | FDCB Chapter 2 |       |
 | Oct 8   | Chu     |Bitcoin Primer  |  [Bitcoin White Paper](https://bitcoin.org/bitcoin.pdf), BCT Chapter 2-3 | Scribing Team Formation.  | 
-| Oct 13  | Chu     |Consensus I: Byzantine General Problems, Dolev-Strong |     |      |
-| Oct 15  | Chu     |Consensus II: Nakomoto Consensus and the Longest Chain Protocol |   |     | 
+| Oct 13  | Chu     |Consensus I: Byzantine General Problems, Dolev-Strong |  FDCB Chapter 3   |      |
+| Oct 15  | Chu     |Consensus II: Nakomoto Consensus and the Longest Chain Protocol | FDCB Chapter 6,14  |     | 
 | Oct 20  | Leung (Guest) |Consensus III: Speed Up Consensus using Randomness |   | Project Team Formation     |
 | Oct 22  | Wang (Guest)  |Consensus IV: Speed Up Consensus using Sharding |   |      | 
 | Oct 27  | Chu     |Ethereum, EVM and Smart Contract | [Ethereum Yellow Paper]()  |      |       ｜
