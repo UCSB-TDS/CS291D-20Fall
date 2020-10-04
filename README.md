@@ -30,8 +30,8 @@ Shumo Chu (shumo@ucsb.edu)
 | Nov 12  | Chu     |zkSnark Primer I  |       |    | 
 | Nov 17  | Chu     |zkSnark Primer II      |       |       |
 | Nov 19  | Chu     |zkSnark Applications: zkRollup and Zcash      |       |       |  
-| Nov 24  | Wang (Guest, MSR)  |Consensus IV: Speed Up Consensus using Sharding |   |      | 
-| Nov 26  |         | No lecture (Thanksgiving) |     |     | 
+| Nov 24  | Wang (Guest, MSR)  |Consensus IV: Speed Up Consensus using Sharding | [Monoxide](https://www.usenix.org/system/files/nsdi19-wang-jiaping.pdf)  |       | 
+| Nov 26  |         |No lecture (Thanksgiving) |     |     | 
 | Dec 1   | Chu     |zkStark: removing trusted setup |     |      |  
 | Dec 3   | Ji (Guest, Harvard) |Token Economy and the Future of Blockchains |     |      |
 | Dec 8   | Chu     | Extra Office Hour for Project Hacking |    |      |
