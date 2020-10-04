@@ -20,17 +20,17 @@ Shumo Chu (shumo@ucsb.edu)
 | Oct 8   | Chu     |Bitcoin Primer  |  [Bitcoin White Paper](https://bitcoin.org/bitcoin.pdf), BCT Chapter 2-3 | Scribing Team Formation.  | 
 | Oct 13  | Chu     |Consensus I: Byzantine General Problems, Dolev-Strong |  FDCB Chapter 3   |      |
 | Oct 15  | Chu     |Consensus II: Nakomoto Consensus and the Longest Chain Protocol | FDCB Chapter 6,14  |     | 
-| Oct 20  | Leung (Guest, Algorand and MIT) |Consensus III: Speed Up Consensus using Randomness |   | Project Team Formation     |
-| Oct 22  | Wang (Guest)  |Consensus IV: Speed Up Consensus using Sharding |   |      | 
-| Oct 27  | Chu     |Ethereum, EVM and Smart Contract | [Ethereum Yellow Paper]()  |      |       ｜
-| Oct 29  | Chu     |Writing Smart Contracts using Solidity  |        | Project Proposal Due  |
-| Nov 3   | Chu     |Layer-2 I: Connecting Real World with Oracles     |      |      |
-| Nov 5   | Chu     |Layer-2 II: Payment Channel and State Channel  |      |      |
-| Nov 10  | Chu     |De-anonymizing the Blockchain and mixing |     |       |
-| Nov 12  | Chu     |PCP and Zero Knowledge Proofs |      |       |
-| Nov 17  | Chu     |zkSnark Primer I  |       |    | 
-| Nov 19  | Chu     |zkSnark Primer II      |       |       |
-| Nov 24  | Chu     |zkSnark Applications: zkRollup and Zcash      |       |       |      
+| Oct 20  | Leung (Guest, MIT/Algorand) |Consensus III: Speed Up Consensus using Randomness |   | Project Team Formation     |
+| Oct 22  | Chu     |Ethereum, EVM and Smart Contract | [Ethereum Yellow Paper]()  |      |       ｜
+| Oct 27  | Chu     |Writing Smart Contracts using Solidity  |        | Project Proposal Due  |
+| Oct 29  | Chu     |Layer-2 I: Connecting Real World with Oracles     |      |      |
+| Nov 3   | Chu     |Layer-2 II: Payment Channel and State Channel  |      |      |
+| Nov 5   | Chu     |De-anonymizing the Blockchain and mixing |     |       |
+| Nov 10  | Chu     |PCP and Zero Knowledge Proofs |      |       |
+| Nov 12  | Chu     |zkSnark Primer I  |       |    | 
+| Nov 17  | Chu     |zkSnark Primer II      |       |       |
+| Nov 19  | Chu     |zkSnark Applications: zkRollup and Zcash      |       |       |  
+| Nov 24  | Wang (Guest, MSR)  |Consensus IV: Speed Up Consensus using Sharding |   |      | 
 | Nov 26  |         | No lecture (Thanksgiving) |     |     | 
 | Dec 1   | Chu     |zkStark: removing trusted setup |     |      |  
 | Dec 3   | Ji (Guest, Harvard) |Token Economy and the Future of Blockchains |     |      |
