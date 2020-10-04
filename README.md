@@ -22,13 +22,13 @@ Shumo Chu (shumo@ucsb.edu)
 | Oct 15  | Chu     |Consensus II: Nakomoto Consensus and the Longest Chain Protocol | FDCB Chapter 6,14  |     | 
 | Oct 20  | Leung (Guest, MIT/Algorand) |Consensus III: Speed Up Consensus using Randomness | [Algorand Agreement](https://eprint.iacr.org/2018/377.pdf), [Algorand System](https://people.csail.mit.edu/nickolai/papers/gilad-algorand.pdf)   | Project Team Formation     |
 | Oct 22  | Chu     |Ethereum, EVM and Smart Contract | [Ethereum Yellow Paper]()  |      |       ｜
-| Oct 27  | Chu     |Writing Smart Contracts using Solidity  |        | Project Proposal Due, Homework 2 Out  |
-| Oct 29  | Chu     |Layer-2 I: Connecting Real World with Oracles     |      |      |
-| Nov 3   | Chu     |Layer-2 II: Payment Channel and State Channel  |      |      |
-| Nov 5   | Chu     |De-anonymizing the Blockchain and mixing |     | Homework 2 Due      |
+| Oct 27  | Chu     |Writing Smart Contracts using Solidity  |        |  |
+| Oct 29  | Chu     |Layer-2 I: Connecting Real World with Oracles     |      |  Project Proposal Due, Homework 2 Out |
+| Nov 3   | Chu     |Layer-2 II: Payment Channel and State Channel  |      | Homework 2 Due      |
+| Nov 5   | Chu     |De-anonymizing the Blockchain and mixing |      |      |
 | Nov 10  | Chu     |PCP and Zero Knowledge Proofs |      |       |
-| Nov 12  | Chu     |zkSnark Primer I  |       |    | 
-| Nov 17  | Chu     |zkSnark Primer II      |       |       |
+| Nov 12  | Chu     |zkSnark Primer I  |       |      | 
+| Nov 17  | Chu     |zkSnark Primer II      |      | Project Progress report due      |
 | Nov 19  | Chu     |zkSnark Applications: zkRollup and Zcash      |       |       |  
 | Nov 24  | Wang (Guest, MSR)  |Consensus IV: Speed Up Consensus using Sharding | [Monoxide](https://www.usenix.org/system/files/nsdi19-wang-jiaping.pdf)  |       | 
 | Nov 26  |         |No lecture (Thanksgiving) |     |     | 
