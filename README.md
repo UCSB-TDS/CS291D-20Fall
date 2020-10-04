@@ -13,6 +13,8 @@ Shumo Chu (shumo@ucsb.edu)
 
 ## Course Syllabus:
 
+Note: this is a tentatvie schedule
+
 |  Date   | Speaker | Topic          | Readings            |   Event  | 
 |---------|---------|----------------|---------------------|----------|  
 | Oct 1   |         |No lecture  |                     |          |
@@ -29,7 +31,7 @@ Shumo Chu (shumo@ucsb.edu)
 | Nov 10  | Chu     |PCP and Zero Knowledge Proofs |      |       |
 | Nov 12  | Chu     |zkSnark Primer I  |       |      | 
 | Nov 17  | Chu     |zkSnark Primer II      |      | Project Progress report due      |
-| Nov 19  | Chu     |zkSnark Applications: zkRollup and Zcash      |       |       |  
+| Nov 19  | Chu     |zkSnark Applications: zkRollup and Zcash      | [zerocash](http://zerocash-project.org/media/pdf/zerocash-oakland2014.pdf) |       |  
 | Nov 24  | Wang (Guest, MSR)  |Consensus IV: Speed Up Consensus using Sharding | [Monoxide](https://www.usenix.org/system/files/nsdi19-wang-jiaping.pdf)  |       | 
 | Nov 26  |         |No lecture (Thanksgiving) |     |     | 
 | Dec 1   | Chu     |zkStark: removing trusted setup |     |      |  
