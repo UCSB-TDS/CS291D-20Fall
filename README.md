@@ -16,16 +16,16 @@ Shumo Chu (shumo@ucsb.edu)
 |  Date   | Speaker | Topic          | Readings            |   Event  | 
 |---------|---------|----------------|---------------------|----------|  
 | Oct 1   |         |No lecture  |                     |          |
-| Oct 6   | Chu     |Introduction, Cryptographic Primititives  | FDCB Chapter 2 |       |
+| Oct 6   | Chu     |Introduction, Cryptographic Primititives  | FDCB Chapter 2 | Homework 1 Out      |
 | Oct 8   | Chu     |Bitcoin Primer  |  [Bitcoin White Paper](https://bitcoin.org/bitcoin.pdf), BCT Chapter 2-3 | Scribing Team Formation.  | 
-| Oct 13  | Chu     |Consensus I: Byzantine General Problems, Dolev-Strong |  FDCB Chapter 3   |      |
+| Oct 13  | Chu     |Consensus I: Byzantine General Problems, Dolev-Strong |  FDCB Chapter 3   |   Homework 1 Due   |
 | Oct 15  | Chu     |Consensus II: Nakomoto Consensus and the Longest Chain Protocol | FDCB Chapter 6,14  |     | 
 | Oct 20  | Leung (Guest, MIT/Algorand) |Consensus III: Speed Up Consensus using Randomness | [Algorand Agreement](https://eprint.iacr.org/2018/377.pdf), [Algorand System](https://people.csail.mit.edu/nickolai/papers/gilad-algorand.pdf)   | Project Team Formation     |
 | Oct 22  | Chu     |Ethereum, EVM and Smart Contract | [Ethereum Yellow Paper]()  |      |       ｜
-| Oct 27  | Chu     |Writing Smart Contracts using Solidity  |        | Project Proposal Due  |
+| Oct 27  | Chu     |Writing Smart Contracts using Solidity  |        | Project Proposal Due, Homework 2 Out  |
 | Oct 29  | Chu     |Layer-2 I: Connecting Real World with Oracles     |      |      |
 | Nov 3   | Chu     |Layer-2 II: Payment Channel and State Channel  |      |      |
-| Nov 5   | Chu     |De-anonymizing the Blockchain and mixing |     |       |
+| Nov 5   | Chu     |De-anonymizing the Blockchain and mixing |     | Homework 2 Due      |
 | Nov 10  | Chu     |PCP and Zero Knowledge Proofs |      |       |
 | Nov 12  | Chu     |zkSnark Primer I  |       |    | 
 | Nov 17  | Chu     |zkSnark Primer II      |       |       |
