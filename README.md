@@ -9,7 +9,7 @@ Shumo Chu (shumo@ucsb.edu)
 
 ## Time
 - Lecture: Tuesday/Thursday 1 PM -2:50 PM
-- Office Hour: 4PM 
+- Office Hour: Tuesday 4PM (till 12th Dec) 
 
 ## Course Syllabus:
 
