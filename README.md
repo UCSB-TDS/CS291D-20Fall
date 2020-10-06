@@ -35,7 +35,7 @@ Note: this is a tentatvie schedule
 | Nov 24  | Jiaping Wang (MSR)  |Consensus IV: Speed Up Consensus using Sharding | [Monoxide](https://www.usenix.org/system/files/nsdi19-wang-jiaping.pdf)  |       | 
 | Nov 26  |         |No lecture (Thanksgiving) |     |     | 
 | Dec 1   | Chu     |zkStark: removing trusted setup |     |      |  
-| Dec 3   | Victor Ji (Harvard) |Token Economy and the Future of Blockchains |     |      |
+| Dec 3   | Victor Ji (Harvard) |Token Economy and  |     |      |
 | Dec 8   | Chu     | Extra Office Hour for Project Hacking |    |      |
 | Dec 10  |         | Project Presentation |          |          |
 | Dec 12  |         |                    |                | 11PM PST, Report Due |
