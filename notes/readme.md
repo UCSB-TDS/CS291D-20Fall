@@ -4,7 +4,7 @@ Scribing Guide
 
 ## Installing LaTex
 
-You need to install LaTex. LaTex is a programming language used in Academia for writting documents.
+You need to install LaTex. LaTex is a programming language used in academia for writting documents. It will produce high quality document by default (compared with MS Word/Apple Pages etc).
 You can find the guide of installing LaTex and how to use LaTex to write a report [here](https://www.latex-tutorial.com/tutorials/).
 
 ## Testing your LaTex Installation
