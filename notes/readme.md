@@ -38,7 +38,7 @@ Please create a pull request to this repo:
 
 ## Copy Rights
 
-The lecture notes will be audited by the instructor and will be published online.
+The lecture notes will be audited by the instructor and will be published online. The orignial sribbers will be accredited.
 
 
 
