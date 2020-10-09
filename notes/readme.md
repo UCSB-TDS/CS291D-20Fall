@@ -26,7 +26,8 @@ This step should produce a `template.pdf`
 ## Writing Lecture Note
 
 Write a 2 - 3 page lecture note of your assigned lecture. Should cover the major concepts taught, problems, and the techniques used.
-You should change the `template.tex` to fill in your own content.
+You should change the `template.tex` to fill in your own content. Please don't delete `template.tex`. Instead, copy `template.tex`, rename it to `lecture<N>.tex`, 
+where `<N>` is the actual lecture number. You need to submit a `.tex` source code.
 Don't forget to change Line 112 to the correct lecture number, title, and scribbers names.
 
 
