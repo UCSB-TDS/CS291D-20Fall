@@ -1,0 +1,221 @@
+%
+% This is a borrowed LaTeX template file for lecture notes for CS267,
+% Applications of Parallel Computing, UCBerkeley EECS Department.
+% Now being used for CMU's 10725 Fall 2012 Optimization course
+% taught by Geoff Gordon and Ryan Tibshirani.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi. "pdflatex template.tex" should also work.
+%
+
+\documentclass[twoside]{article}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+
+\usepackage{amsmath,amsfonts,graphicx}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf UCSB CS 291D: Blockchains and Cryptocurrencies
+	\hfill Fall 2020} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Lecture #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill Scribes: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+
+%   {\bf Note}: {\it LaTeX template courtesy of UC Berkeley EECS dept.}
+
+%   {\bf Disclaimer}: {\it These notes have not been subjected to the
+%   usual scrutiny reserved for formal publications.  They may be distributed
+%   outside this class only with the permission of the Instructor.}
+%   \vspace*{4mm}
+}
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\newcommand\E{\mathbb{E}}
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-TITLE**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+\lecture{1}{Title}{Shumo Chu}{scribe-name1,2,3}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+% **** YOUR NOTES GO HERE:
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+This lecture's notes illustrate some uses of
+various \LaTeX\ macros.  
+Take a look at this and imitate.
+
+\section{Some theorems and stuff} % Don't be this informal in your notes!
+
+We now delve right into the proof.
+
+\begin{lemma}
+This is the first lemma of the lecture.
+\end{lemma}
+
+\begin{proof}
+The proof is by induction on $\ldots$.
+For fun, we throw in a figure.
+%%%NOTE USAGE !
+\fig{1}{1in}{A Fun Figure}
+
+This is the end of the proof, which is marked with a little box.
+\end{proof}
+
+\subsection{A few items of note}
+
+Here is an itemized list:
+\begin{itemize}
+\item this is the first item;
+\item this is the second item.
+\end{itemize}
+
+Here is an enumerated list:
+\begin{enumerate}
+\item this is the first item;
+\item this is the second item.
+\end{enumerate}
+
+Here is an exercise:
+
+{\bf Exercise:}  Show that ${\rm P}\ne{\rm NP}$.
+
+Here is how to define things in the proper mathematical style.
+Let $f_k$ be the $AND-OR$ function, defined by
+
+\[ f_k(x_1, x_2, \ldots, x_{2^k}) = \left\{ \begin{array}{ll}
+
+	x_1 & \mbox{if $k = 0$;} \\
+
+	AND(f_{k-1}(x_1, \ldots, x_{2^{k-1}}),
+	   f_{k-1}(x_{2^{k-1} + 1}, \ldots, x_{2^k}))
+	 & \mbox{if $k$ is even;} \\
+
+	OR(f_{k-1}(x_1, \ldots, x_{2^{k-1}}),
+	   f_{k-1}(x_{2^{k-1} + 1}, \ldots, x_{2^k}))	
+	& \mbox{otherwise.} 
+	\end{array}
+	\right. \]
+
+\begin{theorem}
+This is the first theorem.
+\end{theorem}
+
+\begin{proof}
+This is the proof of the first theorem. We show how to write pseudo-code now.
+%*** USE PSEUDO-CODE ONLY IF IT IS CLEARER THAN AN ENGLISH DESCRIPTION
+
+Consider a comparison between $x$ and~$y$:
+\begin{tabbing}
+\hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \=\kill
+\>{\bf if} $x$ or $y$ or both are in $S$ {\bf then } \\
+\>\> answer accordingly \\
+\>{\bf else} \\
+\>\>    Make the element with the larger score (say $x$) win the comparison \\
+\>\> {\bf if} $F(x) + F(y) < \frac{n}{t-1}$ {\bf then} \\%
+\>\>\> $F(x) \leftarrow F(x) + F(y)$ \\
+\>\>\> $F(y) \leftarrow 0$ \\
+\>\> {\bf else}  \\
+\>\>\> $S \leftarrow S \cup \{ x \} $ \\
+\>\>\> $r \leftarrow r+1$ \\
+\>\> {\bf endif} \\
+\>{\bf endif} 
+\end{tabbing}
+
+This concludes the proof.
+\end{proof}
+
+
+\section{Next topic}
+
+Here is a citation, just for fun~\cite{CW87}.
+
+\section*{References}
+\beginrefs
+\bibentry{CW87}{\sc D.~Coppersmith} and {\sc S.~Winograd}, 
+``Matrix multiplication via arithmetic progressions,''
+{\it Proceedings of the 19th ACM Symposium on Theory of Computing},
+1987, pp.~1--6.
+\endrefs
+
+% **** THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
+
+\end{document}
+
