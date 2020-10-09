@@ -1,4 +1,4 @@
-Scribbing Guide
+Scribing Guide
 ==================
 
 
