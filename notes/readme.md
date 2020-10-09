@@ -14,9 +14,9 @@ You can find the guide of installing LaTex and how to use LaTex to write a repor
 
 2. Clone your forked repo
 
-3. Check whether your can compile `template.tex` in `note` folder:
+3. Check whether your can compile `template.tex` in `notes` folder:
 ```
-cd CS291D-20Fall/note
+cd CS291D-20Fall/notes
 pdflatex template.tex
 
 ```
@@ -32,7 +32,7 @@ Don't forget to change Line 112 to the correct lecture number, title, and scribb
 
 
 ## Submitting Your Lecture Note
-You need to submit a `.tex` source code. Place your `.tex` file in `note` folder. Commit it to your forked repo. Then, create a pull request to this repo:
+You need to submit a `.tex` source code. Place your `.tex` file in `notes` folder. Commit it to your forked repo. Then, create a pull request to this repo:
 [instructions](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). The submission time will be calculated using the last edit time of the pull request.
 
 ## Copyrights
