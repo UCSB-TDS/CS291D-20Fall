@@ -36,7 +36,7 @@ Don't forget to change Line 112 to the correct lecture number, title, and scribb
 Please create a pull request to this repo:
 [instructions](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
 
-## Copy Rights
+## Copyrights
 
 The lecture notes will be audited by the instructor and will be published online. The orignial sribbers will be accredited.
 
