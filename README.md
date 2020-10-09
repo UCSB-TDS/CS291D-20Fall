@@ -9,7 +9,7 @@ Shumo Chu (shumo@ucsb.edu)
 
 ## Time
 - Lecture: Tuesday/Thursday 1 PM -2:50 PM
-- Office Hour: 4PM 
+- Office Hour: Tuesday 4PM (till 12th Dec) 
 
 ## Course Syllabus:
 
@@ -19,7 +19,7 @@ Note: this is a tentatvie schedule
 |---------|---------|----------------|---------------------|----------|  
 | Oct 1   |         |No lecture  |                     |          |
 | Oct 6   | Chu     |Introduction, Cryptographic Primititives  | FDCB Chapter 2 | Homework 1 Out      |
-| Oct 8   | Chu     |Bitcoin Primer  |  [Bitcoin White Paper](https://bitcoin.org/bitcoin.pdf), BCT Chapter 2-3 | Scribing Team Formation.  | 
+| Oct 8   | Chu     |Bitcoin Primer  |  [Bitcoin White Paper](https://bitcoin.org/bitcoin.pdf), BCT Chapter 2-3 |  | 
 | Oct 13  | Chu     |Consensus I: Byzantine General Problems, Dolev-Strong |  FDCB Chapter 3   |   Homework 1 Due   |
 | Oct 15  | Chu     |Consensus II: Nakomoto Consensus and the Longest Chain Protocol | FDCB Chapter 6,14  |     | 
 | Oct 20  | Derek Leung (MIT/Algorand) |Consensus III: Speed Up Consensus using Randomness | [Algorand Agreement](https://eprint.iacr.org/2018/377.pdf), [Algorand System](https://people.csail.mit.edu/nickolai/papers/gilad-algorand.pdf)   | Project Team Formation     |
