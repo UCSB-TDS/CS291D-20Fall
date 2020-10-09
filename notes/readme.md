@@ -27,14 +27,13 @@ This step should produce a `template.pdf`
 
 Write a 2 - 3 page lecture note of your assigned lecture. Should cover the major concepts taught, problems, and the techniques used.
 You should change the `template.tex` to fill in your own content. Please don't delete `template.tex`. Instead, copy `template.tex`, rename it to `lecture<N>.tex`, 
-where `<N>` is the actual lecture number. You need to submit a `.tex` source code.
+where `<N>` is the actual lecture number. 
 Don't forget to change Line 112 to the correct lecture number, title, and scribbers names.
 
 
 ## Submitting Your Lecture Note
-
-Please create a pull request to this repo:
-[instructions](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
+You need to submit a `.tex` source code. Place your `.tex` file in `note` folder. Commit it to your forked repo. Then, create a pull request to this repo:
+[instructions](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). The submission time will be calculated using the last edit time of the pull request.
 
 ## Copyrights
 
