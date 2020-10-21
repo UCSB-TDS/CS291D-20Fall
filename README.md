@@ -23,8 +23,8 @@ Note: this is a tentatvie schedule
 | Oct 13  | Chu     |Consensus I: Byzantine General Problems, Dolev-Strong |  FDCB Chapter 3   |   Homework 1 Due   |
 | Oct 15  | Chu     |Consensus II: Nakomoto Consensus and the Longest Chain Protocol | FDCB Chapter 6,14  |     | 
 | Oct 20  | Derek Leung (MIT/Algorand) |Consensus III: Speed Up Consensus using Randomness | [Algorand Agreement](https://eprint.iacr.org/2018/377.pdf), [Algorand System](https://people.csail.mit.edu/nickolai/papers/gilad-algorand.pdf)   | Project Team Formation     |
-| Oct 22  | Chu     |Ethereum, EVM and Smart Contract | [Ethereum Yellow Paper]()  |      |       ｜
-| Oct 27  | Chu     |Writing Smart Contracts using Solidity  |        |  |
+| Oct 22  | Chu     |Ethereum, EVM and Smart Contract | [Ethereum Yellow Paper](https://ethereum.github.io/yellowpaper/paper.pdf)  |      |       ｜
+| Oct 27  | Chu     |Writing Smart Contracts using Solidity  |  [Solidity Doc](https://solidity.readthedocs.io/en/v0.7.4/)      |  |
 | Oct 29  | Chu     |Layer-2: state-channel and payment channel     |      |  Project Proposal Due, Homework 2 Out |
 | Nov 3   | Fan Zhang (Duke/Chainlink)     | Connecting blockchains with real world using oracles  |      | Homework 2 Due      |
 | Nov 5   | Chu     |De-anonymizing the Blockchain and mixing |      |      |
