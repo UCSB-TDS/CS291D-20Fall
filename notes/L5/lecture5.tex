@@ -1,0 +1,381 @@
+%
+% This is a borrowed LaTeX template file for lecture notes for CS267,
+% Applications of Parallel Computing, UCBerkeley EECS Department.
+% Now being used for CMU's 10725 Fall 2012 Optimization course
+% taught by Geoff Gordon and Ryan Tibshirani.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi. "pdflatex template.tex" should also work.
+%
+
+\documentclass[twoside]{article}
+
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+
+\usepackage{amsmath,amsfonts,graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{float}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf UCSB CS 291D: Blockchains and Cryptocurrencies
+	\hfill Fall 2020} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Lecture #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill Scribes: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+
+%   {\bf Note}: {\it LaTeX template courtesy of UC Berkeley EECS dept.}
+
+%   {\bf Disclaimer}: {\it These notes have not been subjected to the
+%   usual scrutiny reserved for formal publications.  They may be distributed
+%   outside this class only with the permission of the Instructor.}
+%   \vspace*{4mm}
+}
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\newcommand\E{\mathbb{E}}
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-TITLE**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+\lecture{5}{Consensus III: Speed Up Consensus using Randomness}{Derek Leung}{Dipanjan Das, Chinmay Sonar}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+% **** YOUR NOTES GO HERE:
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+\section{Desirable properties of a cryptocurrency system} % Don't be this informal in your notes!
+For a cryptocurrency system to be practical and usable, it should meet the following requirements:
+
+\begin{itemize}
+	\item \textbf{Secure:}
+	\begin{itemize}
+		\item \textbf{Theft:} Only owner should be able to spend the money, and no one else.
+		\item \textbf{Consensus:} If money is spent, everybody should agree.
+		In other words, all the parties must agree to the order of transactions that have taken place in the system.
+		Also, no money can be double spent.
+	\end{itemize}
+	\item \textbf{Distributed:} The transaction log is distributed among all the parties using the system.
+	\item \textbf{Anonymity:} Only transactions are public, but not the identities of the sender, or the receiver.
+	\item \textbf{Scalable:} Achieves high throughput in terms of the number of transactions executed per unit time.
+	\item \textbf{Efficient:} The storage space required to store the transaction log, and the bandwidth and the processing power required to execute the distributed protocol should be optimal.
+	\item \textbf{Fault tolerance:} Should be resilient to network interruptions, or faulty, or adversarial nodes.
+	\item \textbf{Fairness:} Like in any trade, the payer receives~\cite{1} the item/service she has paid for.
+\end{itemize}
+
+
+\section{The Byzantine Generals Problem (BGP) -- Revisited}
+The Byzantine Generals Problem allegorically models a fundamental problems in the distributed systems where $n$ nodes need to come to a consensus under the following assumptions:
+
+\begin{itemize}
+	\item \textbf{Authenticated channel:} Receivers know the source of the message they receive.
+	\item \textbf{Bad actors:} There are $f$ bad actors present in the system who try to either break the consistency of the system, or its availability.
+	\item \textbf{Delay:} Message delays are unbounded, \textit{i.e.}, the network may be unreliable.
+\end{itemize}
+
+\begin{theorem}
+	It is impossible to solve the problem unless $3f + 1 \leq n$.
+	In other words, in a synchronous network with authenticated channel where $f$ actors are corrupt, no solution will work unless there are more than 3f actors present in the network. 
+\end{theorem}
+
+\subsection{Proving impossibility by example}
+Let's assume $n=3$ actors with $f=1$ corrupt actor want to agree on a bit $b \in \{0,1\}$.
+Table~\ref{tab:bgp_impossbility_proof1} and Table~\ref{tab:bgp_impossbility_proof2} show the bits sent and received by different actors.
+Actor \textbf{B} is dishonest.
+In the first case, it sends bit $0$ to \textbf{A}, and bit $1$ to \textbf{C}.
+Therefore, \textbf{A} and \textbf{C} agree on different bits---$0$ and $1$ respectively.
+In the seconds case, it sends no message at all---thus preventing \textbf{A} and \textbf{C} reach any consensus.
+Either one breaks the consistency of the system.
+
+\begin{minipage}{.45\textwidth} %
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{cc|ccc}
+		&  & \multicolumn{3}{c}{\textbf{Sent}} \\ \cline{3-5} 
+		& \textbf{} & \textbf{A} & \multicolumn{1}{c}{\textbf{B}} & \multicolumn{1}{c}{\textbf{C}} \\ \midrule
+		\multicolumn{1}{l|}{\multirow{3}{*}{\rotatebox{90}{\textbf{Received}}}} & \textbf{A} & 1 & \textcolor{red}{0} & 0 \\
+		\multicolumn{1}{l|}{} & \textbf{B} & 1 & --- & 0 \\
+		\multicolumn{1}{l|}{} & \textbf{C} & 1 & \textcolor{red}{1} & 0 \\ 
+	\end{tabular}
+	\caption{Impossibility of the Byzantine Generals Problem with less than $3f + 1$ actors.
+		\textbf{B}, who sends two different messages to \textbf{A} and \textbf{C}, is the bad actor here.}
+	\label{tab:bgp_impossbility_proof1}
+\end{table}
+\end{minipage} %
+\hfill
+\begin{minipage}{.45\textwidth} %
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{cc|ccc}
+		&  & \multicolumn{3}{c}{\textbf{Sent}} \\ \cline{3-5} 
+		& \textbf{} & \textbf{A} & \multicolumn{1}{c}{\textbf{B}} & \multicolumn{1}{c}{\textbf{C}} \\ \midrule
+		\multicolumn{1}{l|}{\multirow{3}{*}{\rotatebox{90}{\textbf{Received}}}} & \textbf{A} & 1 & \textcolor{red}{---} & 0 \\
+		\multicolumn{1}{l|}{} & \textbf{B} & 1 & --- & 0 \\
+		\multicolumn{1}{l|}{} & \textbf{C} & 1 & \textcolor{red}{---} & 0 \\ 
+	\end{tabular}
+	\caption{Impossibility of the Byzantine Generals Problem with less than $3f + 1$ actors.
+		\textbf{B}, who sends no message to \textbf{A} and \textbf{C}, is the bad actor here.}
+	\label{tab:bgp_impossbility_proof2}
+\end{table}
+\end{minipage}
+
+
+\subsection{Practical Byzantine Fault Tolerance (PBFT)}
+Practical Byzantine Fault Tolerance (PBFT) is a leader based, two-round protocol for the Byzantine Generals Problem.
+Let's assume there are $n$ actors of which $f$ are corrupt, where $3f + 1 \leq n$.
+The steps of the algorithm are:
+
+\begin{enumerate}
+	\item Some leader proposes a transaction $T$ by broadcasting it to others
+	\item When machine $x$ hears the transaction $T$, it acknowledges the receipt by broadcasting $\texttt{ACK}(x, T)$
+	\item When machine $y$ hears quorum of $\texttt{ACK}(x, T)$, it acknowledges the receipt by broadcasting $\texttt{ACK}(y, \text{quorum of } \texttt{ACK}(x, T))$.
+	A \textit{quorum} is defined as $2f + 1$ acknowledgment messages $\texttt{ACK}(x, T)$ for the same transaction $T$
+	\item When machine $z$ hears $\texttt{ACK}(y, \text{quorum of } \texttt{ACK}(x, T))$, it knows $T$ is committed
+\end{enumerate}
+
+
+\subsection{PBFT by example}
+Let's assume there are $n=4$ actors out of which $f=1$ are corrupt.
+Therefore, quorum ($2f + 1$) is $3$ messages/actor.
+There actors are $\{x-1, x_2, x_3, x_4\}$.
+We assume the leader is \textit{not} dishonest.
+Let $x_2$ be the bad actor here.
+
+\begin{enumerate}
+	\item \textbf{Round 0 (Proposal): } $x_2$ proposes a transaction $T$.
+	$x_i$, where $i \in \{1, 3, 4\}$, listens to this broadcast
+	\item \textbf{Round 1: } $x_i$ acknowledges the receipt by broadcasting $\texttt{ACK}(x_i, T)$, where $i \in \{1, 3, 4\}$
+	\item \textbf{Round 2: } $x_i$ re-acknowledges the acknowledgment messages from the round $1$ by broadcasting $\texttt{ACK}(x_i, \texttt{ACK}(\{x_j\}, T))$, where $i, j \in \{1, 3, 4\}$
+	\item \textbf{Finalization:} $x_i$, where $i \in \{1, 3, 4\}$, commits to $T$
+\end{enumerate}
+
+
+\subsection{Decentralized BFT}
+PBFT can't be applied naively to a decentralized setting like cryptocurrency system because of the following issues:
+
+\begin{itemize}
+	\item The number of actors $n$ is not known before the protocol is executed.
+	Moreover, $n$ changes dynamically as nodes are free to join or leave the network at any time.
+	\item The complexity of PBFT is $O(n^2)$.
+	In a practical system, $n$ could be huge.
+	For example, if there are $1$ million nodes present in the network, approximately $1$ trillion messages are exchanged.
+\end{itemize}
+
+The idea is to fairly sample $n^\prime \subset n$ nodes to bring the final complexity down to $O(nn^\prime)$.
+Speaking of \textit{fairness}, different protocols adapt different sampling strategies.
+In Bitcoin, Nakamoto consensus protocol proposes a technique called \textit{proof-of-work} that regulates a machine's power in the system as a function of its computational power.
+In other words, the more processing power a machine has, it has got more power in the system.
+However, \textit{proof-of-work} is resource demanding, hence not very efficient.
+\textit{Proof-of-stake} is a viable alternative that regulates a machine's power in the system as a function of the money being held in the account.
+In general, finding a correct definition of fairness is one of the major challenges in developing a new system.
+
+In this lecture, we focus on \textit{proof of stake}. 
+We study a secure protocol which achieves efficiency by sampling.
+
+\section{Sortition}
+
+Properties of the Sortition procedure:
+\begin{enumerate}
+    \item Non-interactive
+    \item Stake should be representative of the power
+    \item Efficient
+    \item Forward secure (ephemeral signatures)
+    \item Deniel of service resistance
+\end{enumerate}
+
+Next, we present a particular protocol which uses sortition, and has first three properties.
+
+\subsection{Strawman}
+\label{subsec:strawman-naive}
+
+Each actor/participant in the system follows the protocol described below:
+\begin{enumerate}
+    \item Sample $s_{i} \leftarrow{}$ random bit-string of length $n$.
+    \item Broadcast $s_{i}$. Store the random bit strings $s_{i}'$ for other actors in the system by listening on the network.
+    \item Compute $S = s_{1} \bigoplus s_{2} \bigoplus \cdots \bigoplus s_{n}$
+    \item If and only if $H(S, i) * \frac{\mbox{money owned by i}}{\mbox{total money in the system}} > c$; actor i is selected for this round.
+\end{enumerate}
+
+In step $4$, $H(S, i)$ is a hash of any function of integers $S$ and $i$ e.g., one can compute $H(S \bigoplus i)$, and $c$ is a constant threshold (decided at the start of the prototcol).
+
+Observe that the above protocol is \emph{interactive} (as an actor sends it's $s_{i}$ on the network), protocol is \emph{efficient} as everyone need to send just one message.
+And, the protocol is \emph{stake representive} as the money owned by an actor appears in the numerator of computation in step $4$ which essentially detemines
+if the agent participates in a particular round.
+
+\subsection{Issues with the naive implementation of Strawman}
+
+\begin{itemize}
+    \item If we set the threshold $c$ to be very high, then some rounds might not have any participant, hence, the \emph{availability} is compromised.
+    \item Security concers: 
+    \begin{itemize}
+        \item An actor can wait for other all other actors to send their $s_{i}'s$, and then choose its own $s_{i}$ adversarially to control the value of $S$. Note that this issue occurs as we assume an asychronous system.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Modifications over Strawman}
+
+We make use of \emph{Verifiable Random Function} (VRF) introduced by Micali, Rabin and Vadhan~\cite{2}.
+Their construction uses an involved analysis using a Schnorr proof to show security. This proof is beyond the scope of this lecture.
+
+VRF consists of 3 algorithms:
+\begin{enumerate}
+	\item Keygen(security parameter) $\rightarrow{} ~~ (pk,sk)$
+	\item Hash(m, sk) $\rightarrow$ $h,sig\_(m,pk)$
+	\item verify$(m, pk, sig)$ $\rightarrow$ retuns if the signature was produced by sk matching $pk$ on $m$
+\end{enumerate}
+
+Note that in step 2, $h$ is an additional part compared to the normal public key based signature schemes.
+We also note that $Hash = SHA256(Sign(m,sk)) \rightarrow{} sign(m,sk)$ here we have to use a  cryptogrphic hash function like SHA256, since sig has to be a deteministic algorithm.
+
+Hence, with VRF, we modify our previous protocol by changing its last step as follows:
+\begin{enumerate}
+	\item Sample $s_{i} \leftarrow{}$ random bitstring of length $n$.
+    \item Broadcast $s_{i}$. Store the random bit strings $s_{i}'$ for other actors in the system by listening on the network.
+    \item Compute $S = s_{1} \bigoplus s_{2} \bigoplus \cdots \bigoplus s_{n}$
+    \item Consists of three parts:
+    \begin{itemize}
+		\item VRF\_Hash(i $\bigoplus$ ACK(sk, T), sk) $\rightarrow{}$ h, sig
+		\item Check if $h \times \frac{\mbox{money owned by i}}{\mbox{total money in the system}} > c$
+		\item If the above condition evaluates to true, transmit $(ACK(sk, T)), pk, sig$
+	\end{itemize}
+	Each actor $i$ follows the above procedure.
+\end{enumerate}
+
+If some actor transmits $(ACK(sk, T)), pk, sig$, then other actors in the system needs to verify the message.
+
+\textbf{Verify procedure}:
+	\begin{itemize}
+		\item Check if $h \times \frac{\mbox{money owned by i}}{\mbox{total money in the system}} > c$
+		\item Check VRF\_verify(ACK(sk,T), pk, sig)
+	\end{itemize}
+
+\textbf{Remarks}:
+	\begin{itemize}
+		\item Quorum size is roughly around $1000$.
+		\item We want each agent to run VRF\_hash exactly once, i.e. no one should have an incentive to run it more than once to obtain a desired hash value $h$.
+		Otherwise, this system will become similar to the Proof of Work (computation intensive).
+		\item To achieve this, the VRF\_Hash function given message (ACK in the above example) and sk produces the same hash value. 
+		Hence, adversary do not have any incentive to run VFR\_Hash multiple times.
+		\item In some sense, both POW abd POS favors rich agents. This reiterates the issue of choosing a ``fair'' protocol.
+		Some of the other notion considered in the literature are:
+		\begin{itemize}
+			\item Proof of ``personhood''
+			\item Proof of storage
+			\item Proof of delay
+		\end{itemize}
+		\item Setting a threshold is tricky as we are faced with the tradeoff: If we set threshold too low, we might not abide to 
+		our guarantee of share proportional to the stake. Otherwise, if the threshold is set too high, then quorum size has to be reduced.
+		\item The above protocol do not have \emph{Anonymity} since the stake table is public.
+	\end{itemize}
+	
+\subsection{Practical considerations}
+While implementing the protocol as above, one might need to consider following scenarios (this is an informal discussion, and the list is by no means complete):
+\begin{itemize}
+	\item Enough people should sign up for a new system.
+	\item Account compromise (hacking) -- Important to keep secret key safe for POS
+	\item ``Fairness'' -- initially, with less people in the system, someone might get too rich
+	\item Faulty implementation: implementation bugs can subvert any guarantee such as security or availability.
+\end{itemize}
+
+\section*{References}
+\beginrefs
+\bibentry{1}{\sc Jian Liu} and {\sc Wenting Li}, and {\sc Ghassan O. Karame}, and {\sc N. Asokan}
+``Toward Fairness of Cryptocurrency Payments,''
+{\it IEEE S\&P},
+2018.
+
+\bibentry{2}{\sc Silvio Micali} and {\sc Michael Rabin}, and {\sc Salil Vadhan}.
+``Verifiable Random Functions'', 
+40th annual symposium on foundations of computer science (cat. No. 99CB37039),
+{\it IEEE S\&P},
+1999.
+
+\endrefs
+
+% **** THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
+
+\end{document}
+
