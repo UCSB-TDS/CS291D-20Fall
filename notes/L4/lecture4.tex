@@ -128,7 +128,7 @@ All nodes must have the same view of transactions log. However, it is very hard 
 \begin{itemize}
     \item $LOG_k^s$ denotes the log at node k after round s
     \item For any honest node $i, j$ and any round $t, r$ where $(t \leq r)$, $LOG_i^t \leq LOG_j^r$
-    \item  $LOG_i^t \preceq LOG_j^r$
+    \item $LOG_i^t \preceq LOG_j^r$, which denotes that $LOG_i^t$ is a prefix of $LOG_j^r$
 \end{itemize}  
 \subsubsection{Liveness}
 Suppose that a honest node receives transaction $txs$ in round $r$, then $trx$ will appear in every honest node's log within a bounded round.
