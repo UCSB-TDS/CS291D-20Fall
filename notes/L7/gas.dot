@@ -1,0 +1,57 @@
+
+digraph graph_name {
+  graph [
+    charset = "UTF-8";
+    label = "gas spending",
+    labelloc = "t",
+    labeljust = "c",
+    bgcolor = "",
+    fontcolor = black,
+    fontsize = 18,
+    style = "filled",
+    rankdir = TB,
+    margin = 0.2,
+    splines = spline,
+    ranksep = 1.0,
+    nodesep = 0.9
+  ];
+
+  node [
+    colorscheme = "rdylgn11"
+    style = "solid,filled",
+    fontsize = 16,
+    fontcolor = 6,
+    fontname = "Migu 1M",
+    color = 7,
+    fillcolor = 11,
+    fixedsize = false,
+    height = 0.6,
+    width = 1.2
+  ];
+
+  edge [
+    style = solid,
+    fontsize = 14,
+    fontcolor = black,
+    fontname = "Migu 1M",
+    color = black,
+    labelfloat = true,
+    labeldistance = 2.5,
+    labelangle = 70
+  ];
+     
+  // node define
+  Alice [shape = box];
+  Bob [shape = box];
+
+  contractA [shape = trapezium];
+  contractB [shape = trapezium];
+  contractC [shape = trapezium];
+
+  //edge define
+  Alice -> contractA
+  contractA -> contractB
+  contractA -> contractC
+  contractC -> Bob
+
+}
