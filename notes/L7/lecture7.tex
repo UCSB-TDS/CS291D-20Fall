@@ -173,11 +173,14 @@ computational power needed to run a contract.  For a given contract, the EVM
 must spend some number of cycles executing and Ethereum attributes to each cycle a
 gas price.
 
-As a decoupled notion, gas price is a user-defined primitive that
-reflects the user's expectation of how much computational power wil lbe required
-to run the contract.  The gas limit is a ceiling on how much the gas price may
-be, which is simply another check on users abusing the stack machine's (and
-miners') computational power.
+As a decoupled notion, gas price is a user-defined primitive that reflects the
+user's expectation of how much computational power will be required to run the
+contract.  The gas limit is a ceiling on how much the gas price may be, which is
+simply another check on users abusing the stack machine's (and miners')
+computational power.  The total cost of a transaction is $gasPrice * gasLimit$,
+and the fee paid to the miner is the total amount of gas needed to run the
+contract multiplied by the gasPrice and any leftover gas is returned to the
+user.
 
 If the gas price for a contract is larger than the amount of gas needed to run
 the contract, the difference will be refunded to the user.  The gas itself then
@@ -221,8 +224,8 @@ allotted to each contract at the beginning of each message call.
 
 The Solidity language offers a feature called ``require'' which acts like an
 assert as in C/C++.  There is additionally a reserved function ``emit'' which
-directly writes to the blockchain.  Moreover, there are several global
-variables that a contract might call out to, including ``gasLeft'',
+directly writes to the blockchain.  Moreover, there are several global variables
+and functions that a contract might call out to, including ``gasLeft'',
 ``SHA256'' and ``keccak256''.
 
 There are also several function visibilities.  These are keywords that constrain
@@ -275,11 +278,6 @@ an API), which explains how functions will exactly behave at the byte level.
 \beginrefs
 
 \bibentry{Sol} ``Solidity, v0.7.4``. [Online]. Available: https://solidity.readthedocs.io/en/v0.7.4/index.html''.  Accessed on: Nov. 2, 2020.
-
-\bibentry{CW87}{\sc D.~Coppersmith} and {\sc S.~Winograd}, 
-``Matrix multiplication via arithmetic progressions,''
-{\it Proceedings of the 19th ACM Symposium on Theory of Computing},
-1987, pp.~1--6.
 
 \endrefs
 
