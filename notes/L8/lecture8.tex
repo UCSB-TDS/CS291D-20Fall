@@ -1,0 +1,409 @@
+%
+% This is a borrowed LaTeX template file for lecture notes for CS267,
+% Applications of Parallel Computing, UCBerkeley EECS Department.
+% Now being used for CMU's 10725 Fall 2012 Optimization course
+% taught by Geoff Gordon and Ryan Tibshirani.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi. "pdflatex template.tex" should also work.
+%
+
+\documentclass[twoside]{article}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+\usepackage{hyperref} 
+\usepackage{amsmath,amsfonts,graphicx}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf UCSB CS 291D: Blockchains and Cryptocurrencies
+	\hfill Fall 2020} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Lecture #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill Scribes: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+
+%   {\bf Note}: {\it LaTeX template courtesy of UC Berkeley EECS dept.}
+
+%   {\bf Disclaimer}: {\it These notes have not been subjected to the
+%   usual scrutiny reserved for formal publications.  They may be distributed
+%   outside this class only with the permission of the Instructor.}
+%   \vspace*{4mm}
+}
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+\newenvironment{example}{{\bf Example:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\newcommand\E{\mathbb{E}}
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-TITLE**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+\lecture{8}{Intro to Zero Knowledge Proofs}{Shumo Chu}{Xinlu Zhang, Zach Sisco}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+% **** YOUR NOTES GO HERE:
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+% This lecture's notes illustrate some uses of
+% various \LaTeX\ macros.  
+% Take a look at this and imitate.
+
+\section{Proof, Secrets, and Computation } 
+\subsection{What are proofs?}
+% Q:What are Proof efficiency?\\
+% A: NP. Proofs are are short (polynomial long) and easy to verify  (polynomial time).\\
+
+Goedel and Turing claimed proofs are strings with special syntactic properties. Using the conventional notion of a mathematical proof, to prove that a statement is true, one should provide a sequence of symbols that can be written down and a valid sequence exists only for true statements. 
+~\\
+
+In computational complexity theory, NP (nondeterministic polynomial time) is 
+is the class of languages in which membership can be verified quickly: for all $x \in L$, this fact can be verified in polynomial time.
+
+\begin{example}
+Graph Isomorphism\\
+
+We say two graphs $H$and $G$ are isomorphic if they are the same up to a renumbering of vertices. In other words, if there is a permutation $\pi$ of the notations of the nodes of $G$ such that $\pi(G) =H$.\\
+Mathematically, we have two graphs are isomorphiic s.t. $$ISO  \equiv \{ (G,H) : G  \cong H \}$$
+
+\begin{figure}[!htp]
+\centering
+\tikz{
+    \node[above=2.5cm] at (1,0) {A};
+    \node (1) at (0,0) [draw, circle] {1};
+    \node (2) at (2,0) [draw, circle] {2};
+    \node (3) at (0,2) [draw, circle] {3};
+    \node (4) at (2,2) [draw, circle] {4};
+    \draw (1) edge (2)  (1) edge (3)  (1) edge (4);
+}
+\qquad
+\tikz{
+    \node[above=2.5cm] at (1,0) {B};
+    \node (1) at (0,0) [draw, circle] {a};
+    \node (2) at (2,0) [draw, circle] {b};
+    \node (3) at (0,2) [draw, circle] {c};
+    \node (4) at (2,2) [draw, circle] {d};
+    \draw (1) edge (2)  (1) edge (3)  (1) edge (4);
+}
+\label{fig:iso}
+\end{figure}
+
+For example, shown above, graphs A and B are isomorphic because such a permutation $\pi(A)$ exists such that two vertices are connected by an edge in A if and only if there are a corresponding pair of vertices that are connected by an edge in B. 
+This permutation would map the following vertices: 1 to a; 2 to b; 3 to c; and 4 to d. 
+The edges are mapped as follows: the $(1,2)$ edge maps to the $(a,b)$ edge; the $(1,3)$ edge maps to the $(a,c)$ edge; and the $(1,4)$ edge maps to the $(a,d)$ edge.
+
+\end{example}
+
+
+\subsection{Interactive Proofs}
+
+The interactive proof is a more general way for people to convince one another of the validity of a statement. 
+There are two parties involved:
+\begin{itemize}
+\item Prover: has infinite running time - like a wizard.
+\item  Verifier: has polynomial running time, and has the ability to generate random numbers. This is known as probabilistic polynomial time (PPT) --- can think of as a king who asks questions.
+\end{itemize}
+The prover and verifier interact for a polynomial time. Finally, the verifier accepts $x \in L$ or rejects since it is not convinced that $x \in L$. ($x$ may be in L, but rejection means that the prover did not convince the verifier.)
+
+Informally, there are two objectives of a proof systems:
+
+\begin{itemize}
+\item Completeness: It's possible to prove all true theorems.
+\item Soundness: It's not possible to prove a false theorem.
+\end{itemize}
+
+We say that if a prover and verifier forms a system such that:
+\begin{itemize}
+\item  There is a small probability of completeness error;
+\item There is a small probability of soundness error;
+\end{itemize}
+The system is an Interactive Proof System for membership in $L$.
+
+
+\begin{definition}\textbf{(Interactive Proof)} (P,V) is an Interactive Proof System (IPS) for a language L with a security parameter k, which the following two properties
+hold:
+\begin{itemize}
+\item  \textbf{Completeness}: $\forall  x \in L$, $Prob [ (P,V) [x] = accept] \geq 1-negl(k)$ 
+\item \textbf{Soundness}: $\forall  x  \notin L$, $Prob [ (P^{\star},V) [x] = accept] \leq negl(k)$ 
+\end{itemize}
+where $negl$ is a negligible function and k is used to control the error probability \cite{CS282}. 
+\end{definition}
+In the above definition, the P,V means honest algorithm but $P^\star$ denotes   possibility malicious prover.
+
+% todo: maybe mention something about classes of problems that are provable in IP subset(NP, Co-NP, #P), equiv(PSPACE) 
+
+\begin{example}
+Graph Non-isomorphism:
+
+We say that a pair of graphs G, H are not isomorphic s.t.
+$NISO \equiv \{(G,H) : G  \ncong H \}$
+
+% graph non-iso example that describes doing the proof as a "game"
+To prove this in an IPS, we set the proof up as a game between a prover and a verifier with the following conditions: if the theorem is true, the prover always wins; if the theorem is false, the prover loses to the verifier at least half of the time. 
+
+\begin{figure}[!htp]
+\centering
+\tikz{
+    \node[above=2.5cm] at (1,0) {$A$};
+    \node (1) at (0,0) [draw, circle] {1};
+    \node (2) at (2,0) [draw, circle] {2};
+    \node (3) at (0,2) [draw, circle] {3};
+    \node (4) at (2,2) [draw, circle] {4};
+    \draw (1) edge (2)  (1) edge (3)  (1) edge (4);
+}
+\qquad
+\tikz{
+    \node[above=2.5cm] at (1,0) {$B$};
+    \node (1) at (0,0) [draw, circle] {a};
+    \node (2) at (2,0) [draw, circle] {b};
+    \node (3) at (0,2) [draw, circle] {c};
+    \node (4) at (2,2) [draw, circle] {d};
+    \draw (1) edge (2)  (1) edge (3)  (3) edge (4);
+}
+\label{fig:noniso}
+\end{figure}
+
+Consider the graphs, $A$ and $B$, above. 
+To show $A \ncong B$, the game plays out as follows. 
+The verifier makes a permutation of $A$, $\pi(A)$, and sends the corresponding graph $C = \pi(A)$ to the prover, asking which graph $C$ is isomorphic to. 
+But by construction, $C \cong A$, and this is the answer the prover gives.
+In this way, the prover will always win at this game no matter how many times it is played. 
+
+On the other hand, knowing that false theorems are not provable in an IPS, consider the game that attempts to show $A \cong B$. 
+Again, the verifier makes a permutation of $A$, $\pi(A)$, and sends the corresponding graph $C = \pi(A)$ to the prover, asking which graph $C$ is isomorphic to. 
+However, $C$ is both isomorphic to $A$ and $B$. 
+The prover does not know this, so there is a $1/2$ probability of the prover giving the correct answer. 
+As the game repeats, this probability drops exponentially, showing that the prover will lose this game at least half of the time. 
+
+\end{example}
+% Informally, the purpose of a proof is to convince somebody a particular statement is true. A statement
+% can consist of expressions such as “Two graphs G and H is not isomorphic”  
+
+%\subsubsection{Protocol: Private-coin Graph Non-isomorphism}
+Formally, the process that describes the IPS for proving graph non-isomorphism, for some graphs $G_1$ and $G_2$, is as follows \cite{COS522}.
+\begin{enumerate}
+\item $V$ : pick a random number $i \in \{1, 2\}$ uniformly. Randomly permute the vertices of $G_i$ to get a new graph C. Send C to $P$.
+\item $P$: identify which of $G_1$, $G_2$ was used to produce C. Let $G_j$ be that graph. Send $j$ to $V$.
+\item $V$ : accept if $i=j$; reject otherwise.
+\end{enumerate}
+
+If $G_1$ and $G_2$ is not isomorphic, then there is a prover s.t. $Pr[V accepts] = 1$, because a pover can tell
+which graph is isomorphic to C, if these two graphs are non-isomorphic. However, $G_1$ and $G_2$ is isomorphic, the best the prover can do is uniformly randomly guess a result, s.t. $Pr[V accepts] \leq 1/2$.
+
+\subsection{Zero-knowledge Proofs}
+
+Intuitively, a zero-knowledge proof is a method in which the prover can prove to the verifier that a given statement X is true without revealing additional information.
+A result of this kind of proof system is that everything provable is in fact provable in zero knowledge. 
+
+The base axiom of a zero-knowledge proof system is that polynomial-time computations and random bit strings are free. 
+From this basis, zero knowledge proofs are constructed. 
+
+\begin{example}
+Graph isomorphism, $A \cong B$
+
+As the verifier (without the prover), generate a graph $A$---this can be easily done in polynomial time and follows from the axiom that efficient computation is free. 
+Then, generate a random renaming of the veritices in $A$ to obtain a new correspondence $\phi(A) = C$. 
+By construction, $A \cong C$, and thus $A \cong B$ because we now have a valid correspondence $\phi(A)$. 
+
+\end{example}
+
+The key idea with the previous example is giving a proof that $A \cong B$ without revealing any additional knowledge. 
+
+For reference, a formal description of a zero-knowledge proof system from \cite{CS282} follows. 
+
+\begin{definition}\textbf. (Zero-Knowledge Proof). An Interactive Proof $PV^{\star}$ for a language L is said to be Zero-Knowledge if 
+$$\forall V^{\star} \in PPT ~~\exists S_{v^{\star}} \in PPT ~~\forall x\in L~~s.t.$$
+$$[P\leftrightarrow V*[x]] \cong [S_{V^{\star}}(x)]$$
+\end{definition}
+
+For every verifier $V^{\star}$, there is an expected polynomial-time algorithm simulator $S_{V^{\star}}$, which can produce transcripts, without interacting with the real prover, based on the input of assertion $x$ which needs to be proven. The produced transcripts are indistinguishable from interaction results with the real prover or more specifically points from $[PV^{\star} (x)]$.\\
+
+\begin{example}
+Passwords
+
+Zero-knowledge proofs can be used for authentication. 
+For instance, a user (the prover) can associate some large number with their account on a web service (the verifier).
+If the user can provide proof that the number is a product of two primes then they obtain access to the account. 
+This works as a zero-knowledge proof because the verifier gains no additional knowledge from the proof; it only knows the number associated with the user. 
+The user merely provides proof of the prime factorization for that number. 
+
+Zero-knowledge proof passwords are a stronger alternative to conventional passwords because the actual secret is not stored on the verifier's end. 
+
+\end{example}
+
+\subsection{Other Proofs}
+\subsubsection{Samplable Proofs}
+Proofs can be long, and in order to verify a proof we must read every line. 
+However, the intuition with samplable proofs is to sample parts of the proof and check that their relationship holds. If so, we conclude the proof is correct. By repeating the sampling process we gain confidence of the proof's correctness, as the probability of error decreases exponentially each time. This technique is somewhat inefficient because the proof must be massaged into a special format that may increase the length of the proof. A formal description of a sampling proof system follows.
+
+Formally, a sampling proof system is based on the interactive proof-system, (SP, SV) \cite{Micali}. The sampling prover SP computes a samplable proof $x \in L$, string $W_x$, based on an input $x$ (a n-bit long string belonging to a given NP-language L) and $w_x$ (a NP-witness that indeed $x\in L$). The  sampling verifier SV outputs either 'ACCEPT' or 'REJECT' based on input string $x$ ( candidate member of L) and  random access to $\sigma$ (candidate samplable proof for $x \in L$) by reaching polynomial-log(n) bit-locations of $\sigma$.
+SV outputs ACCEPT if $x\in L$ and $\sigma = SP(x,w_x)$ for some  correct $w_x$. However, if $x \notin L$, $\forall \sigma$ SV outputs REJECT with probability $\frac{1}{2}$.
+
+\subsubsection{Computationally Sound (CS) Proofs}
+The most important property of CS proofs is that efficient proofs exist for all theorems. 
+A CS proof system is both complete and inconsistent. 
+That is, we can say,  ``$X$ and not-$X$ are always provable,'' but proving a false theorem is extremely hard.
+The advantage of this is that a proof for something true is easy to find. 
+
+\subsubsection{Rational Proofs}
+Rational proofs exist at the intersection of mathematics, computer science, and economics. 
+The idea is to ``pay for a proof.''
+So obtaining the truth becomes the maximization of computable functions. 
+For instance, if Alice wants to know what $f(x)$ is, she can pay Bob. Bob says $f(x)$ is 27. Alice knows that Bob is telling the truth because the price she paid is a function of $f$, $x$, and 27. This works because Bob wants to maximize the payment he receives for telling the truth, $f(x)$.
+
+
+
+
+
+% Here is an enumerated list:
+% \begin{enumerate}
+% \item this is the first item;
+% \item this is the second item.
+% \end{enumerate}
+
+% Here is an exercise:
+
+% {\bf Exercise:}  Show that ${\rm P}\ne{\rm NP}$.
+
+% Here is how to define things in the proper mathematical style.
+% Let $f_k$ be the $AND-OR$ function, defined by
+
+% \[ f_k(x_1, x_2, \ldots, x_{2^k}) = \left\{ \begin{array}{ll}
+% 	x_1 & \mbox{if $k = 0$;} \\
+% 	AND(f_{k-1}(x_1, \ldots, x_{2^{k-1}}),
+% 	   f_{k-1}(x_{2^{k-1} + 1}, \ldots, x_{2^k}))
+% 	 & \mbox{if $k$ is even;} \\
+% 	OR(f_{k-1}(x_1, \ldots, x_{2^{k-1}}),
+% 	   f_{k-1}(x_{2^{k-1} + 1}, \ldots, x_{2^k}))	
+% 	& \mbox{otherwise.} 
+% 	\end{array}
+% 	\right. \]
+
+% \begin{theorem}
+% This is the first theorem.
+% \end{theorem}
+
+% \begin{proof}
+% This is the proof of the first theorem. We show how to write pseudo-code now.
+% %*** USE PSEUDO-CODE ONLY IF IT IS CLEARER THAN AN ENGLISH DESCRIPTION
+
+% Consider a comparison between $x$ and~$y$:
+% \begin{tabbing}
+% \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \=\kill
+% \>{\bf if} $x$ or $y$ or both are in $S$ {\bf then } \\
+% \>\> answer accordingly \\
+% \>{\bf else} \\
+% \>\>    Make the element with the larger score (say $x$) win the comparison \\
+% \>\> {\bf if} $F(x) + F(y) < \frac{n}{t-1}$ {\bf then} \\%
+% \>\>\> $F(x) \leftarrow F(x) + F(y)$ \\
+% \>\>\> $F(y) \leftarrow 0$ \\
+% \>\> {\bf else}  \\
+% \>\>\> $S \leftarrow S \cup \{ x \} $ \\
+% \>\>\> $r \leftarrow r+1$ \\
+% \>\> {\bf endif} \\
+% \>{\bf endif} 
+% \end{tabbing}
+
+% This concludes the proof.
+% \end{proof}
+
+
+% \section{Next topic}
+
+% Here is a citation, just for fun~\cite{CW87}.
+
+
+
+
+
+
+
+\section*{References}
+\beginrefs
+\bibentry{COS522} ``Chapter 9: Interactive proofs''. [Online]. Accessed on: November 5, 2020. Available: \url{https://www.cs.princeton.edu/courses/archive/spring06/cos522/ip.pdf}\\
+\bibentry{CS282} ``Foundations of Cryptography: Lecture 9''. [Online]. Accessed on: November 5, 2020. Available: \url{http://web.cs.ucla.edu/~rafail/TEACHING/WINTER-2005/L9/L9.pdf}
+\bibentry{Micali} ``Computationally-Sound Proofs''. Micali, S. Logic Colloquium ’95: Proceedings of the Annual European Summer Meeting of the Association of Symbolic Logic, held in Haifa, Israel, August 9-18, 1995, 214--268, Springer-Verlag, Berlin, 1998. Available: \url{https://projecteuclid.org/euclid.lnl/1235415908}
+
+\endrefs
+
+% % **** THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
+
+\end{document}
