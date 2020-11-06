@@ -109,7 +109,7 @@
 \begin{document}
 %FILL IN THE RIGHT INFO.
 %\lecture{**LECTURE-TITLE**}{**DATE**}{**LECTURER**}{**SCRIBE**}
-\lecture{10}{zk-SNARK Primer I}{Shumo Chu}{Gwyneth Allwright, Lianke Qin, Aiwen Xu}
+\lecture{10}{zk-SNARK Primer I}{Shumo Chu}{Gwyneth Allwright, Lianke Qin}
 %\footnotetext{These notes are partially based on those of Nigel Mansell.}
 
 % **** YOUR NOTES GO HERE:
@@ -118,102 +118,91 @@
 % macros follow.  
 %**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
 %**** ARE NEVER READ BY ANYBODY.
-This lecture's notes illustrate some uses of
-various \LaTeX\ macros.  
-Take a look at this and imitate.
 
-\section{Some theorems and stuff} % Don't be this informal in your notes!
-
-We now delve right into the proof.
-
-\begin{lemma}
-This is the first lemma of the lecture.
-\end{lemma}
-
-\begin{proof}
-The proof is by induction on $\ldots$.
-For fun, we throw in a figure.
-%%%NOTE USAGE !
-\fig{1}{1in}{A Fun Figure}
-
-This is the end of the proof, which is marked with a little box.
-\end{proof}
-
-\subsection{A few items of note}
-
-Here is an itemized list:
+\section{Recap of Previous Discussions}
 \begin{itemize}
-\item this is the first item;
-\item this is the second item.
+\item Layer 1: consensus.
+\item Layer 2: smart contracts.
+\item Universal verifiability: all data is public.
+\item Assets are controlled by signatures. Secret keys can be thought of as specialized zero-knowledge proof systems.
 \end{itemize}
 
-Here is an enumerated list:
-\begin{enumerate}
-\item this is the first item;
-\item this is the second item.
-\end{enumerate}
+\section{Introduction to zk-SNARKs}
+\begin{itemize}
+\item The main benefit of zk-SNARKs is privacy. zk-SNARKs allow us to encrypt public data on blockchains.
+\item Toy example: we move from state \texttt{i} to state \texttt{i+1} on the blockchain using the transaction $T$. 
+	\begin{itemize}
+	\item We encrypt \texttt{i}, \texttt{i+1} and $T$.
+	\item We wish to verify that $T$ is a sound transaction for state \texttt{i} and that it produces state \texttt{i+1}. 
+	\item This verification should take the form of a zero-knowledge proof $\Pi$.
+	\end{itemize}
+\end{itemize}
 
-Here is an exercise:
+\section{Introduction to Circuits}
+\begin{itemize}
+\item Boolean circuits are composed using the binary operators AND, OR and NOT. We can represent any boolean function as a circuit $C: \{0,1\}^N \longrightarrow \{0,1\}$.
+\item Arithmetic circuits are mappings $C: F_p^N \longrightarrow F_p$, where $F_p$ is a finite field.
+	\begin{itemize}
+	\item Intuitively, finite fields are finite sets of objects with certain operations defined on them.
+	\item For example, there is an addition operation. A property of finite fields is that
+		\begin{equation}
+		a, b \in F_p \implies a+b \in F_p.
+		\end{equation}
+	\item Arithmetic circuits can be represented using directed acyclic graphs (DAGs).
+	\item You can express boolean circuits as arithmetic circuits (but it may be inefficient to do so).
+	\end{itemize}
+\item The link between circuits and zk-SNARKs is as follows. Imagine that we have a function
+	\begin{equation}
+	C_{\text{hash}}: (h, m) \longrightarrow \{0,1\},
+	\end{equation}
+	which is zero if and unity otherwise.
+\end{itemize}
 
-{\bf Exercise:}  Show that ${\rm P}\ne{\rm NP}$.
+\section{Milestones in the History of Proof Systems}
+\begin{itemize}
+\item In 1992, it was proven that the complexity class IP is equivalent to the class PSPACE (Fortnow, Karloff, Nisan, Shamir).
+\item The PCP theorem was proven (Arora, Lund, Safra, Sudan). Idea: any NP statement (anything expressible in a circuit) has a probabilistically checkable proof such that this proof can be verified in polynomial time relative to the size of the classic proof.
+\item Interactive proofs can be converted to non-interactive proofs.
+\end{itemize}
 
-Here is how to define things in the proper mathematical style.
-Let $f_k$ be the $AND-OR$ function, defined by
+\section{Illustration of a Scheme for Zero-Knowledge Proofs}
+\begin{itemize}
+\item In this scenario, we have a prover (Alice) and a verifier (Bob).
+\item Imagine that there are two finite field elements $x\in F_p^n$ and $w \in F_p^m$.
+	\begin{itemize}
+	\item $x$ is public, while $w$ (the witness) is private (known only to Alice).
+	\end{itemize}
+\item Alice uses $x$ and $w$ to compute the arithmetic circuit $C(x, w) \in F_p$.
+	\begin{itemize}
+	\item The circuit $C$ is public.
+	\item Note that $C$ could be a representation of a boolean circuit. We will assume that it evaluates to \texttt{true}.
+	\end{itemize}
+\item Alice wishes to prove the following to Bob:
+	\begin{itemize}
+	\item Soundness: there exists a $w$ such that $C(x, w)$ evaluates to \texttt{true}.
+	\item Knowledge: Alice knows the $w$ in question.
+	\end{itemize}
+\item Why can't Alice just send $w$ to Bob? Three reasons:
+	\begin{itemize}
+	\item $w$ needs to be private.
+	\item $w$ may be too long to send.
+	\item $C(x, w)$ may be inefficient to compute.
+	\end{itemize}
+\item Instead of sending $w$, Alice will send a zero-knowledge proof $\Pi$. This will be constructed as follows:
+	\begin{itemize}
+	\item The key elements of the construction are mappings $S$, $P$ and $V$. $S$ is used to generate keys, while $P$ and $V$ are used for proving and verifying respectively.
+	\item First, we act $S$ on the circuit $C$ to obtain a pair of keys, $p_k$ (proving key) and $v_k$ (verification key).
+	\item Alice computes $P(p_k, x, w)$ to obtain a proof $\Pi$.
+	\item Bob computes $V(v_k, x, \Pi)$ to obtain either \texttt{true} (if the proof was correct) or \texttt{false}.
+	\item In order for this scheme to be successful, we require that
+		\begin{equation}
+		V(v_k, x, \Pi) = \texttt{true} \implies V(v_k, x, P(p_k, x, w)) = \texttt{true},
+		\end{equation}
+		as well as the fact that $V(v_k, x, \Pi) = \texttt{true} \implies$ Alice knows $w$ such that $C(x, w)$ is \texttt{true}.
+	\item This proof is zero-knowledge: $\Pi$ and $x$ reveal nothing about $w$.
+	\end{itemize}
+\end{itemize}
 
-\[ f_k(x_1, x_2, \ldots, x_{2^k}) = \left\{ \begin{array}{ll}
-
-	x_1 & \mbox{if $k = 0$;} \\
-
-	AND(f_{k-1}(x_1, \ldots, x_{2^{k-1}}),
-	   f_{k-1}(x_{2^{k-1} + 1}, \ldots, x_{2^k}))
-	 & \mbox{if $k$ is even;} \\
-
-	OR(f_{k-1}(x_1, \ldots, x_{2^{k-1}}),
-	   f_{k-1}(x_{2^{k-1} + 1}, \ldots, x_{2^k}))	
-	& \mbox{otherwise.} 
-	\end{array}
-	\right. \]
-
-\begin{theorem}
-This is the first theorem.
-\end{theorem}
-
-\begin{proof}
-This is the proof of the first theorem. We show how to write pseudo-code now.
-%*** USE PSEUDO-CODE ONLY IF IT IS CLEARER THAN AN ENGLISH DESCRIPTION
-
-Consider a comparison between $x$ and~$y$:
-\begin{tabbing}
-\hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \=\kill
-\>{\bf if} $x$ or $y$ or both are in $S$ {\bf then } \\
-\>\> answer accordingly \\
-\>{\bf else} \\
-\>\>    Make the element with the larger score (say $x$) win the comparison \\
-\>\> {\bf if} $F(x) + F(y) < \frac{n}{t-1}$ {\bf then} \\%
-\>\>\> $F(x) \leftarrow F(x) + F(y)$ \\
-\>\>\> $F(y) \leftarrow 0$ \\
-\>\> {\bf else}  \\
-\>\>\> $S \leftarrow S \cup \{ x \} $ \\
-\>\>\> $r \leftarrow r+1$ \\
-\>\> {\bf endif} \\
-\>{\bf endif} 
-\end{tabbing}
-
-This concludes the proof.
-\end{proof}
-
-
-\section{Next topic}
-
-Here is a citation, just for fun~\cite{CW87}.
-
-\section*{References}
-\beginrefs
-\bibentry{CW87}{\sc D.~Coppersmith} and {\sc S.~Winograd}, 
-``Matrix multiplication via arithmetic progressions,''
-{\it Proceedings of the 19th ACM Symposium on Theory of Computing},
-1987, pp.~1--6.
-\endrefs
 
 % **** THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
 
