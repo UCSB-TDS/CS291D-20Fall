@@ -1,0 +1,345 @@
+%
+% This is a borrowed LaTeX template file for lecture notes for CS267,
+% Applications of Parallel Computing, UCBerkeley EECS Department.
+% Now being used for CMU's 10725 Fall 2012 Optimization course
+% taught by Geoff Gordon and Ryan Tibshirani.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi. "pdflatex template.tex" should also work.
+%
+
+\documentclass[twoside]{article}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+
+\usepackage{amsmath,amsfonts,graphicx}
+\usepackage{comment}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+	\pagestyle{myheadings}
+	\thispagestyle{plain}
+	\newpage
+	\setcounter{lecnum}{#1}
+	\setcounter{page}{1}
+	\noindent
+	\begin{center}
+		\framebox{
+			\vbox{\vspace{2mm}
+				\hbox to 6.28in { {\bf UCSB CS 291D: Blockchains and Cryptocurrencies
+						\hfill Fall 2020} }
+				\vspace{4mm}
+				\hbox to 6.28in { {\Large \hfill Lecture #1: #2  \hfill} }
+				\vspace{2mm}
+				\hbox to 6.28in { {\it Lecturer: #3 \hfill Scribes: #4} }
+				\vspace{2mm}}
+		}
+	\end{center}
+	\markboth{Lecture #1: #2}{Lecture #1: #2}
+	
+	%   {\bf Note}: {\it LaTeX template courtesy of UC Berkeley EECS dept.}
+	
+	%   {\bf Disclaimer}: {\it These notes have not been subjected to the
+	%   usual scrutiny reserved for formal publications.  They may be distributed
+	%   outside this class only with the permission of the Instructor.}
+	%   \vspace*{4mm}
+}
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+		{[\arabic{equation}]}{\usecounter{equation}
+			\setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+			\setlength{\labelwidth}{1.6truecm}}}
+	\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+	\vspace{#2}
+	\begin{center}
+		Figure \thelecnum.#1:~#3
+	\end{center}
+}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\newcommand\E{\mathbb{E}}
+
+\begin{document}
+	%FILL IN THE RIGHT INFO.
+	%\lecture{**LECTURE-TITLE**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+	\lecture{9}{Connecting Blockchains with Real World Using Oracles}{Fan Zhang}{Priyanka Bose, Fatih Kaleoglu, Lawrence Lim}
+	%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+	
+	% **** YOUR NOTES GO HERE:
+	
+	\begin{comment}
+	
+	% Some general latex examples and examples making use of the
+	% macros follow.  
+	%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+	%**** ARE NEVER READ BY ANYBODY.
+	This lecture's notes illustrate some uses of
+	various \LaTeX\ macros.  
+	Take a look at this and imitate.
+	
+	\section{Some theorems and stuff} % Don't be this informal in your notes!
+	
+	We now delve right into the proof.
+	
+	\begin{lemma}
+	This is the first lemma of the lecture.
+	\end{lemma}
+	
+	\begin{proof}
+	The proof is by induction on $\ldots$.
+	For fun, we throw in a figure.
+	%%%NOTE USAGE !
+	\fig{1}{1in}{A Fun Figure}
+	
+	This is the end of the proof, which is marked with a little box.
+	\end{proof}
+	
+	\subsection{A few items of note}
+	
+	Here is an itemized list:
+	\begin{itemize}
+	\item this is the first item;
+	\item this is the second item.
+	\end{itemize}
+	
+	Here is an enumerated list:
+	\begin{enumerate}
+	\item this is the first item;
+	\item this is the second item.
+	\end{enumerate}
+	
+	Here is an exercise:
+	
+	{\bf Exercise:}  Show that ${\rm P}\ne{\rm NP}$.
+	
+	Here is how to define things in the proper mathematical style.
+	Let $f_k$ be the $AND-OR$ function, defined by
+	
+	\[ f_k(x_1, x_2, \ldots, x_{2^k}) = \left\{ \begin{array}{ll}
+	x_1 & \mbox{if $k = 0$;} \\
+	AND(f_{k-1}(x_1, \ldots, x_{2^{k-1}}),
+	f_{k-1}(x_{2^{k-1} + 1}, \ldots, x_{2^k}))
+	& \mbox{if $k$ is even;} \\
+	OR(f_{k-1}(x_1, \ldots, x_{2^{k-1}}),
+	f_{k-1}(x_{2^{k-1} + 1}, \ldots, x_{2^k}))	
+	& \mbox{otherwise.} 
+	\end{array}
+	\right. \]
+	
+	\begin{theorem}
+	This is the first theorem.
+	\end{theorem}
+	
+	\begin{proof}
+	This is the proof of the first theorem. We show how to write pseudo-code now.
+	%*** USE PSEUDO-CODE ONLY IF IT IS CLEARER THAN AN ENGLISH DESCRIPTION
+	
+	Consider a comparison between $x$ and~$y$:
+	\begin{tabbing}
+	\hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \= \hspace*{.25in} \=\kill
+	\>{\bf if} $x$ or $y$ or both are in $S$ {\bf then } \\
+	\>\> answer accordingly \\
+	\>{\bf else} \\
+	\>\>    Make the element with the larger score (say $x$) win the comparison \\
+	\>\> {\bf if} $F(x) + F(y) < \frac{n}{t-1}$ {\bf then} \\%
+	\>\>\> $F(x) \leftarrow F(x) + F(y)$ \\
+	\>\>\> $F(y) \leftarrow 0$ \\
+	\>\> {\bf else}  \\
+	\>\>\> $S \leftarrow S \cup \{ x \} $ \\
+	\>\>\> $r \leftarrow r+1$ \\
+	\>\> {\bf endif} \\
+	\>{\bf endif} 
+	\end{tabbing}
+	
+	This concludes the proof.
+	\end{proof}
+	
+	
+	\section{Next topic}
+	
+	Here is a citation, just for fun~\cite{CW87}.
+	
+	\section*{References}
+	\beginrefs
+	\bibentry{CW87}{\sc D.~Coppersmith} and {\sc S.~Winograd}, 
+	``Matrix multiplication via arithmetic progressions,''
+	{\it Proceedings of the 19th ACM Symposium on Theory of Computing},
+	1987, pp.~1--6.
+	\endrefs
+	
+	
+	\end{comment}
+	
+	
+	% **** THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
+	
+	
+	% Scribing Starts HERE!
+	\section{The Oracle problem}
+	Smart contracts are programs executed by blockchain nodes. Smart contracts are general purpose programs that provides integrity and availability.
+	Almost anything can be programmable using a smart contracts and can be programmed by high-level languages such as Solidity,and Vyper.
+	Integrity implies that their execution can not be stopped i.e, they can not be tampered with.
+	Availability means that it is very hard to stop smart contract from running.
+	
+	Though smart contracts are useful, an important barrier for its widespread adaptability lies in its inability to fetch real-world data as smart contracts can not access external data. They can only read from on-chain data.
+	To be able to access external data, smart contracts use oracles. 
+	The concept of an oracle is very simple. They behave as an intermediary, i.e. they are be able to fetch data from the external sources and push data back to the block-chain.
+	The oracle should provide strong security and privacy guarantees.
+	Specifically, the oracle should have the following properties:
+	\begin{itemize}
+		\item Integrity: Oracle should not be misreporting
+		\item Privacy: Oracle should be able to access relevant data of a user without getting to know any private data related to the user
+		\item Legacy compatibility: It should be compatible with all external websites.
+	\end{itemize}
+	
+	\subsection{Challenges}
+	\textbf{Legacy Compatibility.}
+	Various websites serve external data. 
+	Therefore, the oracle should be compatible with all such existing websites.
+	
+	\textbf{Integrity.} 
+	Integrity can be boosted by decentralization i.e., by using multiple oracles. The idea is to take majority vote of the oracles. Therefore, if one of the oracle is corrupt, it is still fine. In real world, we have decentralized oracle network consisting of several nodes run by different organizations. The assumption is $k$ out of $n$ nodes are honest.
+	
+	\textbf{Privacy.}
+	Privacy is one of the hardest problem to solve. Specifically, an oracle should be able to extract required information from an user without knowing any private data related to the user.
+	Let's say an oracle needs to verify whether an user Alice has greater than $5000$ bank balance. Therefor Alice should be able to convince the oracle it is indeed the case without revealing any more details related to her bank account such as password etc.
+	That means, Alice (Prover) need to prove to the oracle (Verifier) that she has a balance of $> 5000$ in her account. Alice's proof should satisfy the following properties:
+	\begin{itemize}
+		\item Legacy compatibility
+		\item Alice can not cheat
+		\item  Verifier can not know Alice's password
+	\end{itemize}
+	One possible way to do this is could be to use TLS. However, TLS does not sign data. Therefore, there is no proof that Alice is not cheating. 
+	To do this using TLS one needs to enable TLS signing capabilities, however for that lot of websites depending on TLS need to be changed, which is not feasible since it violates the property of legacy compatibility.
+	DECO attempts to solve this problem
+	
+	\section{DECO (Decentralized Oracle)}
+	The main idea behind DECO is to split the MAC key between Alice ($P$) and Verifier ($V$) so that Alice cannot cheat. The DECO protocol can be summarized as follows:
+	
+	\begin{enumerate}
+		\item Three-party handshake
+		\item TLS as usual (MPC between $V$-$P$)
+		\item $P$ either decrypts or proves in ZK to $V$.
+	\end{enumerate}
+	
+	\subsection{Three-Party Handshake}
+	Let's first consider the two-party case:
+	
+	\paragraph{Diffie-Hellman Key Exchange (Two parties)}
+	Let\footnote{In DECO, the elliptic key version of this is used (ECDHE).} $\mathcal{G}$ be a cyclic group with generator $g$ and assume that discrete-logarithm\footnote{In reality the Diffie-Hellman assumption is slightly weaker than that of discrete-log, only assuming the hardness of recovering $(x_s,x_c)$ given $(g^{x_s}, g^{x_c}, g^{x_sx_c})$.} is hard in $\mathcal{G}$. Both the server and the client own secret keys $x_s, x_k$, respectively. To agree on a common key, the parties send each other (public) keys $y_s = g^{x_s}$ and $y_c = g^{x_c}$ over a public channel. The shared key is $z = g^{x_sx_c} = y_s^{x_c} = y_c^{x_s}$, which can be computed by both the server and the client.
+	
+	\paragraph{Three-Party Key Exchange}
+	In the three-party case, the prover (Alice) and the verifier act collectively as the client for Diffie-Hellman. As before, the three parties own their secret keys denoted by $(x_s, x_p, x_v)$. For the public key, Alice sends to the server $y_c = y_p\cdot y_v = g^{x_p} \cdot g^{x_v}$. The shared key then is given by $$z = y_c^{x_s} = g^{x_s(x_p + x_v)} = g^{x_sx_p} \cdot g^{x_sx_v} = y_s^{x_p}\cdot y_s^{x_v} = z_p \cdot z_v$$. 
+	
+	Therefore, Alice and the verifier own parts of the key $z_p$ and $z_v$ which multiply up to the server's key $z$.
+	
+	\subsection{Running the TLS protocol}
+	
+	The encryption and MAC keys used in TLS are derived using a pseudo-random function, i.e. $(K^{\operatorname{Enc}}, K^{\operatorname{MAC}}) = \operatorname{PRF}(z)= \operatorname{PRF}(z_p\cdot z_v)$. The TLS server can compute the keys directly, yet Alice needs to engage in secure multiparty computation with the verifier in order to compute the keys while $z_p$ and $z_v$ remain private. This results in Alice and the verifier sharing the MAC key $K^{MAC}$, holding respectively $K^{MAC}_P$ and $K^{MAC}_V$ such that $K^{MAC} = K^{MAC}_P \bigoplus K^{MAC}_V$.
+	\paragraph{}
+	After that, Alice interacts with the TLS as usual, resorting to multiparty computation with $V$ as needed. It is not until Alice has sent the server response to the verifier that the verifier reveals to Alice its portion of the key $K^{MAC}_V$. Because TLS ciphertexts are cryptographical commitments, this prevents Alice from cheating.
+	
+	\paragraph{A note on efficient multiparty computation:} 
+	$z_P$ and $z_V$ are points on the elliptic curve used in the key exchange, and computation in this domain can be very costly. One of the main ways to overcome this barrier is share conversion utilizing Paillier cryptosystem. Using this method, group addition can be carried out in the underlying prime field instead of the elliptic curve itself.
+	
+	\subsection{}
+	In the final step, Alice generates a proof. She can utilize zero-knowledge proofs to control the amount of information shared with the verifier, e.g. she can prove having funds greater than 5000 dollars in her bank account without revealing any other information about the exact amount she has.
+	\noindent \\ \\
+	After Alice convinces multiple oracle nodes of her statement, they can issue a certificate on her behalf to be used in a smart contract.
+	
+	\subsection{Applications}
+	Oracles and the DECO protocol provide several applications to smart contracts:
+	
+	\subsubsection{Confidential DeFi}
+	One possible application of oracles is in decentralized finance. A centralized finance system has one trusted body that handles finance transactions, whereas a decentralized finance system has permissionless users with no central authority managing transactions. One use of oracles is to create a smart contract so that if an event is true, then give the money to one user Alice, or otherwise give it to the other user Bob. Both Alice and Bob would commit their money to the smart contract, which would then query a body of oracles the help decide whether the event is true or false, and with the oracles' responses, award the money to the correct user.
+	
+	One improvement is making the event confidential to the smart contract and oracles. In order to hide the event, Alice can use DECO to interact with a trusted third-party and oracles with a zero-knowledge proof to convince the oracles that Alice should win the money in the smart contract. Because of the zero-knowledge proof, the oracles also learn nothing about the event and can then tell who won the money to the smart contract, which also learns nothing about the event except who won.
+	
+	% Commit to a secret binary option.  Use ZK proofs to claim victory.
+	
+	\subsubsection{Decentralized Identity}
+	Another important use case of DECO is for decentralized identity. Proving identity is an important application as granting access to resources or other privileges is useful in many cases where needing to trust a user's properties is important. With the three party handshake in the DECO protocol, oracles can interact with a trusted third-party such as a bank, the government, or other trusted agency and certify the identity of a user (such as the birthdate). With a zero-knowledge proof, the DECO protocol can even hide all information except what needs to be proved. (For instance, if Alice needs to prove that she is 18 or older, then a zero knowledge proof can hide her birthday while still proving that she is 18 or older.)
+	
+	%Proving 18 years of age.
+	
+	\subsection{Limitation of DECO}
+	%Need an interactive protocol with the oracle nodes, the prover cannot prove by her own.
+	
+	One major limitation of DECO is that the interactive protocol requires both a prover and a verifier. This means that an intermediary like an oracle is required for this protocol, so a prover cannot commit to the blockchain without proving to a verifier first. However, it has not been shown to be impossible to prove to the blockchain without an oracle, so there is an open problem there.
+	
+	
+	\section{Other Oracle Approaches}
+	\begin{itemize}
+		\item \textbf{Trusted Hardware} - Town Crier (CCS'16)
+		
+		Trusted hardware is hardware that has been designed and certified to perform certain operations. It is an effective solution that solves both integrity and confidentiality but relies on the trust of this hardware to guarantee security.
+		%effective but not widely available.
+		
+		\item \textbf{TLS modification} - TLS-N (NDSS'19)
+		
+		Another good option is modifying the TLS handshake to make these oracle operations easier. A server or trusted third-party can sign their data so that authenticity is guaranteed. One problem with this solution is that adoption can be difficult when changing a widely adopted security standard. DECO is adapted to work with the current TLS handshake using MPC.
+		%- hard to adapt
+		
+		\item \textbf{Game Theoretic Constructions} - ShellingCoin (Buterin, 2014), Astrea: A Decentralized Blockchain Oracle (Alder et al, 2018)
+		
+		A game theoretic construction aims to make revealing the truth the Nash Equilibrium. In other words, revealing the truth is the best possible outcome for parties involved. These solutions are interesting in that they can be combined with other oracle solutions.
+		
+		%- Revealing the Truth becomes NE.
+		
+		\item \textbf{On-chain data as oracles} - Uniswap
+		
+		The blockchain itself stores data and this data can be used as an oracle to power other blockchain applications. One example application is an oracle for blockchain price: Because many exchanges are happening on the blockchain, the price of a cryptocurrency can be learned from data on the blockchain. These on-chain price feeds would be authenticated, but are specific to asset prices and subject to manipulation, even attacks!
+	\end{itemize}
+	
+	\nocite{deco}
+	\bibliographystyle{plain}
+	\bibliography{references}
+\end{document}
