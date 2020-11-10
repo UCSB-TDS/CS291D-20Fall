@@ -121,8 +121,15 @@
 
 \section{Recap of Previous Discussions}
 \begin{itemize}
-\item Layer 1: consensus.
-\item Layer 2: smart contracts.
+\item Layer 1: 
+	\begin{itemize}
+	\item Consensus.
+	\item Smart contracts.
+	\end{itemize}
+\item Layer 2:
+	\begin{itemize}
+	\item Oracles.
+	\end{itemize}
 \item Universal verifiability: all data is public.
 \item Assets are controlled by signatures. Secret keys can be thought of as specialized zero-knowledge proof systems.
 \end{itemize}
@@ -140,7 +147,13 @@
 
 \section{Introduction to Circuits}
 \begin{itemize}
-\item Boolean circuits are composed using the binary operators AND, OR and NOT. We can represent any boolean function as a circuit $C: \{0,1\}^N \longrightarrow \{0,1\}$.
+\item Boolean circuits are composed using the binary operators AND, OR and NOT.
+	\begin{itemize}
+	\item AND$(x, y) = x\cdot y$
+	\item OR$(x, y) = x+y-x\cdot y$
+	\item NOT$(x) = 1-x$ 
+	\item We can represent any boolean function as a circuit $C: \{0,1\}^N \longrightarrow \{0,1\}$.
+	\end{itemize}
 \item Arithmetic circuits are mappings $C: F_p^N \longrightarrow F_p$, where $F_p$ is a finite field.
 	\begin{itemize}
 	\item Intuitively, finite fields are finite sets of objects with certain operations defined on them.
@@ -151,18 +164,18 @@
 	\item Arithmetic circuits can be represented using directed acyclic graphs (DAGs).
 	\item You can express boolean circuits as arithmetic circuits (but it may be inefficient to do so).
 	\end{itemize}
-\item The link between circuits and zk-SNARKs is as follows. Imagine that we have a function
+\item The link between circuits and hash functions is as follows. Imagine that we have a circuit
 	\begin{equation}
 	C_{\text{hash}}: (h, m) \longrightarrow \{0,1\},
 	\end{equation}
-	which is zero if and unity otherwise.
+	which is zero if $h=H(m)$ and unity otherwise, where $H$ is a hash function (e.g. SHA256).
 \end{itemize}
 
 \section{Milestones in the History of Proof Systems}
 \begin{itemize}
 \item In 1992, it was proven that the complexity class IP is equivalent to the class PSPACE (Fortnow, Karloff, Nisan, Shamir).
 \item The PCP theorem was proven (Arora, Lund, Safra, Sudan). Idea: any NP statement (anything expressible in a circuit) has a probabilistically checkable proof such that this proof can be verified in polynomial time relative to the size of the classic proof.
-\item Interactive proofs can be converted to non-interactive proofs.
+\item Developments in non-interactive proof systems (Kilian, Micali, Groth).
 \end{itemize}
 
 \section{Illustration of a Scheme for Zero-Knowledge Proofs}
