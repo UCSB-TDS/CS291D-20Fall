@@ -217,6 +217,115 @@
 \end{itemize}
 
 
+%Lianke starts here
+
+% \section{Finite Field}
+% \begin{itemize}
+%     \item A finite size of set whose size is a prime number.
+%     \item Finite field is addition complete : for any $a \in F$ and $b \in F$ \longrightarrow $a + b \in F$.
+%     \item for multiplication in finite field : 
+% \end{itemize}
+
+
+\section{Proof of Knowledge}
+In cryptography, a proof of knowledge is an interactive proof in which the prover succeeds in ``convincing'' a verifier that the prover knows something. What it means for a machine to ``know something'' is defined in terms of computation. Knowledge extractor is introduced to capture this idea.
+\begin{itemize}
+    \item $\pi$ : its size could be 2KB.
+    \item $P$ is used for proving
+    \item $V$ is used for verifying
+    \item $S$ is used to generate keys.
+    \item Extractor
+
+
+\end{itemize}
+
+
+Then we say ($S$, $P$, $V$) is a proof of knowledge that satisfies:
+
+
+\begin{itemize}
+
+        \item ${\forall}$ c, s.t.  ${\forall}$ unbounded adversary. $A = (A_0, A_1) $
+        \begin{itemize}
+            \item  $(pk, vk) := S(C)$
+            \item  $(x, st) := A_0(pk)$ is to generate a fake $w$
+            \item  $\pi^{\prime} := A_1(pk, x, st)$ is to generate a fake $\pi$
+        \end{itemize}
+
+        \item s.t.  $Pr[V(vk, x, \pi^{\prime}] = true] > negl(\cdot) $
+        \item There is an efficient Extractor(use $A$ as black box),
+        \begin{itemize}
+            \item $(pk, vk) := S(C)$, $(x, st) := A_0(pk)$
+            \item $w := E(pk, x, st)$
+            \item $Pr[ C(x, w) = 0 ] > negl(\cdot)$
+        \end{itemize}
+        \item Argument of knowledge : $A$ is $poly(\cdot)$
+
+\end{itemize}
+
+
+
+\section{Zero Knowledge}
+
+By zero knowledge we want to ensure :
+\begin{itemize}
+    \item ($x$, $\pi$) did not reveal $w$.
+    \item ($S$, $P$, $V$) is a zero knowledge proof for circuit $C$.
+    \item There is an efficient simulator s.t.:
+    \begin{itemize}
+        \item $\forall$ $x \in F_p^{n}$, $\exists$ $w$ : $C(x, w) = 0$, we have :
+        \item ($pk$, $vk$, $x$, $\pi$) where $(pk, vk) := S(C)$ and $\pi := P(pk, x, w)$ is indistinguishable with :
+        \item ($pk$, $vk$, $x$, $\pi$) where $(pk, vk, \pi) := Sim(x)$
+        \item This means that $Sim(x)$ can simulate $\pi$ without $w$
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{zk-SNARK protocols}
+The acronym zk-SNARK stands for “Zero-Knowledge Succinct Non-Interactive Argument of Knowledge,” and refers to a proof construction where one can prove possession of certain information without revealing that information, and without any interaction between the prover and verifier.
+
+\begin{itemize}
+    \item Zero-Knowledge has the meaning explained above: nothing is revealed beyond truth of statement to the verifier.
+    \item Succinct means that the proof is tiny compared to the computation.
+    \begin{itemize}
+        \item The proof size is constant $O(1)$.
+        \item Verification time is $O(1)$ and does not depend on the running time of $f$.
+    \end{itemize}
+    \item Non-interactive means that we can write and store a proof, without the need to have question/answer cycles. So a proof can be computed and published and everyone can verify it.
+    \item ARgument of Knowledge means that soundness is guaranteed only against a computationally bounded server and the proof cannot be constructed without access to a witness.
+\end{itemize}
+
+
+There is a simple comparison among several popular zk-SNARK protocols below:
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+        \hline
+        & Size of $\pi$ & Size of $pk$ & verification time & setup           \\ 
+        \hline
+Groth16~\cite{1} & O(1)                       & O(log$|C|$)  & O(1)              & Yes/Per circuit \\
+        \hline
+PLONK~\cite{2}   & O(1)                       & O(log$|C|$)  & O(1)              & Yes/Update      \\
+        \hline
+STARK~\cite{3}   & O(log$|C|$)                  & O(1)       & O(log$|C|$)         & No       \\      
+        \hline
+
+\end{tabular}
+\caption{Mostly recently used zk-SNARK protocols} 
+
+\end{table}
+
+\section*{References}
+\beginrefs
+\bibentry{1} 
+Groth, Jens. "On the size of pairing-based non-interactive arguments." Annual international conference on the theory and applications of cryptographic techniques. Springer, Berlin, Heidelberg, 2016.
+\bibentry{2}
+Gabizon, Ariel, Zachary J. Williamson, and Oana Ciobotaru. "PLONK: Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Knowledge." IACR Cryptol. ePrint Arch. 2019 (2019): 953.
+\bibentry{3}
+Ben-Sasson, Eli, et al. "Scalable, transparent, and post-quantum secure computational integrity." IACR Cryptol. ePrint Arch. 2018 (2018): 46.
+\endrefs
+
 % **** THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
 
 \end{document}
