@@ -27,11 +27,11 @@ Note: this is a tentatvie schedule
 | Oct 27  | Chu     |Writing Smart Contracts using Solidity  |  [Solidity Doc](https://solidity.readthedocs.io/en/v0.7.4/)      |  |
 | Oct 29  | Chu     |Intro to Zero Knoledge Proofs     |   [Lecture by Silvio Micali](https://www.youtube.com/watch?v=i1NWru-3Xhc)   |  Project Proposal Due, Homework 2 Out |
 | Nov 3   | Fan Zhang (Duke/Chainlink)   | Connecting blockchains with real world using oracles  |      |    |
-| Nov 5   | Chu     |zkSnark Primer I |      |  Homework 2 Due    |
-| Nov 10  | Chu     |zkSnark Primer II |      |       |
-| Nov 12  | Chu     |zkSnark Applications 1: zkRollup |       |      | 
-| Nov 17  | Chu     |De-anonymizing the Blockchain and mixing     |      | Project Progress report due      |
-| Nov 19  | Chu     |zkSnark Application 2: zcash   | [zerocash](http://zerocash-project.org/media/pdf/zerocash-oakland2014.pdf) |       |  
+| Nov 5   | Chu     |zkSNARK Primer |      |  Homework 2 Due    |
+| Nov 10  | Chu     |zkSNARK Internal I |      |       |
+| Nov 12  | Chu     |zkSNARK Internal II |       |      | 
+| Nov 17  | Chu     |zkSNARK Internal III    |      | Project Progress report due      |
+| Nov 19  | Chu     |zkSnark Application: zcash   | [zerocash](http://zerocash-project.org/media/pdf/zerocash-oakland2014.pdf) |       |  
 | Nov 24  | Jiaping Wang (MSR)  |Consensus IV: Speed Up Consensus using Sharding | [Monoxide](https://www.usenix.org/system/files/nsdi19-wang-jiaping.pdf)  |       | 
 | Nov 26  |         |No lecture (Thanksgiving) |     |     | 
 | Dec 1   | Chu     |zkStark: removing trusted setup |     |      |  
