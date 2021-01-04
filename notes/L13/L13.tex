@@ -1,0 +1,193 @@
+%
+% This is a borrowed LaTeX template file for lecture notes for CS267,
+% Applications of Parallel Computing, UCBerkeley EECS Department.
+% Now being used for CMU's 10725 Fall 2012 Optimization course
+% taught by Geoff Gordon and Ryan Tibshirani.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi. "pdflatex template.tex" should also work.
+%
+
+\documentclass[twoside]{article}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+
+\usepackage{amsmath,amsfonts,graphicx}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf UCSB CS 291D: Blockchains and Cryptocurrencies
+	\hfill Fall 2020} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Lecture #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill Scribes: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+
+%   {\bf Note}: {\it LaTeX template courtesy of UC Berkeley EECS dept.}
+
+%   {\bf Disclaimer}: {\it These notes have not been subjected to the
+%   usual scrutiny reserved for formal publications.  They may be distributed
+%   outside this class only with the permission of the Instructor.}
+%   \vspace*{4mm}
+}
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\newcommand\E{\mathbb{E}}
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-TITLE**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+\lecture{13}{zkSNARK Internal III}{Shumo Chu}{Atefeh Mohseni-Ejiyeh}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+% **** YOUR NOTES GO HERE:
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+\section{Pinocchio Protocol: PHGR13} % Don't be this informal in your notes!
+The “Pinocchio” protocol is a practical, usable implementation of a zk-Snark. Arithmetic circuit redefines as QAP: L, R, C, P as follows: 
+\begin{itemize}
+	\item []$\text{L}$ := $\Sigma_{i=1}^m{c_i.L_i}$,
+	\item [] $\text{R}$ := $\Sigma_{i=1}^m{c_i.R_i}$ ,
+	\item [] $\text{O}$ := $\Sigma_{i=1}^m{c_i.O_i}$ ,
+	\item [] $\text{P}$ := $L.R-O$,
+	\item [] $P$ := $H.T$ $\forall s \in F_p$  $P(s) = H(s).T(s)$
+\end{itemize}
+	
+
+
+
+
+\begin{lemma}
+schwartz-zipped lemma
+$E(P(s))$ $s\in F_p$ and $p >> d$
+so, why this scheme is secure?
+\end{lemma}
+
+\begin{proof}
+	We need to have (d+1) points to define a d-degree polynomial.
+Alice has to find a polynomial $P(s)= H(s).T(s)$ such that $P:= L.R-O$.  So, if Bob really picks a random number then the chance of Alice cheating is really small
+\end{proof}
+
+\subsection{Sketch Protocol}
+
+Goal: test whether Alice has a fulfillment assignment of a NP-statement.
+
+\begin{enumerate}
+\item Alice chooses poly. $L, R, O, H$ of degree d.
+\item Bob choose $\sigma \leftarrow F_p$, computes $E(T(s))$ and sends $E(1), ..., E(s^d)$ to Alice.
+\item Alice sends all the hidings $E(L(s)), E(R(s)), E(O(s)), E(H(s))$.
+\item Bob checks $E(T(s).H(s))=E(L(s).R(s)-O(s))$.
+\end{enumerate}
+
+The question which is not yet clear here is that how Alice and Bob actually communicate? How they choose the MP statement?
+
+\subsection{Verifiability of Protocol}
+The problem with this version of pinaccho protocol is that it is not very hard for Alice to choose $L,R, O$ that matches in $L:R-O := H.T$ ($T$ is public). How to solve this problem?
+\\ We need to make sure $L, R$ and $O$ are separate from the coefficients. Therefore, we have $F:=L+X^{d+1}.R+X^{2(d+1)}-O$
+
+Extend idea to define $F$ as a linear combination: $F:= \Sigma_{i=1}^m{c_iF_i}$. \\
+Bob asks Alice to prove that $F$ is a linear combination of $F_i$ or $F_i=L_i+X^{d+1}.R_i+X^{2(d+1)}.O_i$.
+
+\subsection{Linear Combination Proof}
+\begin{enumerate}
+	\item Bob chooses $\beta \leftarrow F_p$, sends $E(\beta.F_1(s)),..., E(\beta.F_m(s))$ to Alice.
+	
+	\item Alice sends back $E(\beta.F(s))$.
+\end{enumerate}
+It's not any arbitrary $L, R, O$ for Alice because Bob has already structured $L, O, R$ in hidings sent to Alice. Therefore, Alice can just change $E(\beta.F(s))$.
+
+\subsection{Zero-knowledge proof}
+\textbf{Concealing the assignment}
+\\~\\
+Alice knows hidings $E(L(s)), E(R(s)), E(O(s)), E(H(s))$ so it still leaks some information.
+\\
+Given $[c'_1,...,c'_2]$, Bib can compute some polynomials $L', R', O',H'$  and $E(L'(s)), E(R'(s)), E(O'(s)), E(H'(s))$. So, Bob could fine something that is not Alice's assignment. Attention that Bob doesn't know what exactly is an assignment but it can find out what it is not. It is considered a leak of information because in some case the range of possible values for an assignment is limited.
+\\~\\
+\textbf{ How fix this problem?} 
+\\~\\
+Instead of computing $L,R ,O$ directly; Alice can choose $\sigma_1 \leftarrow F_p$, $\sigma_2 \leftarrow F_p$, $\sigma_3 \leftarrow F_p$
+\\
+$L_z:=L_1+S_1.T_1$, $R_z := R+\sigma_2.T$, $O_z := O+ \sigma_3.T$.
+
+
+
+% **** THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
+
+\end{document}
+
