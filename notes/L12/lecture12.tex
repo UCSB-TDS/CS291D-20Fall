@@ -27,13 +27,15 @@
 %
 
 \usepackage{amsmath,amsfonts,graphicx}
-\usepackage{minted}
 \usepackage{mathtools}
+\usepackage{listings}
+
 %
 % The following commands set up the lecnum (lecture number)
 % counter and make various numbering schemes work relative
 % to the lecture number.
 %
+
 \newcounter{lecnum}
 \renewcommand{\thepage}{\thelecnum-\arabic{page}}
 \renewcommand{\thesection}{\thelecnum.\arabic{section}}
@@ -179,11 +181,11 @@ of modern zk-SNARK constructions.
 Suppose that Alice wants to prove to Bob that she knows the satisfying assignment for the equation $x^3 + x + 5 = 35$. 
 The computation here is the function $f(x) = x^3 + x + 5$. One could represent this function in the form of the following 
 python program.
-\begin{minted}{python}
+\begin{lstlisting}[language=Python]
 def f(x):
     y = x**3
     return x + y + 5
-\end{minted}
+\end{lstlisting}
 
 In order to represent this computation as a polynomial, we need to go through the intermediate steps of representing them as
 arithmetic circuits, R1CS and finally QAP.
@@ -195,12 +197,12 @@ Single Static Assignment used in compilers.
 
 Our flattened program looks like this. Note that the variables once defined are immutable.
 
-\begin{minted}{python}
+\begin{lstlisting}[language=Python]
 sym_1 = x * x
 y = sym_1 * x
 sym_2 = y + x
 ~out = sym_2 + 5
-\end{minted}
+\end{lstlisting}
 
 From the flattened program, we can now construct an arithmetic circuit by replacing each variables on the left, right and the operator with
 output of a gate, input to a gate and an arithmetic gate respectively.
